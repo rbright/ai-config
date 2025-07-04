@@ -1,0 +1,17 @@
+{
+  "cleanupPeriodDays": 30,
+  "defaultMode": "plan",
+  "env": {
+    "BASH_DEFAULT_TIMEOUT_MS": "120000",
+    "BASH_MAX_TIMEOUT_MS": "300000",
+    "CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR": "1",
+    "DISABLE_AUTOUPDATER": "0",
+    "DISABLE_COST_WARNINGS": "0",
+    "DISABLE_ERROR_REPORTING": "1",
+    "DISABLE_TELEMETRY": "1",
+    "MAX_MCP_OUTPUT_TOKENS": "25000",
+    "MCP_TIMEOUT": "10000",
+    "MCP_TOOL_TIMEOUT": "15000"
+  },
+  "includeCoAuthoredBy": true
+}

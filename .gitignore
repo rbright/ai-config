@@ -2,3 +2,7 @@
 
 # vim undo files
 *.un~
+
+# Claude Code
+.claude/settings.local.json
+tasks.md
