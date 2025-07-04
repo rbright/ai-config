@@ -2,11 +2,11 @@
 
 A sophisticated multi-agent command system for AI-assisted development workflows, built on Claude Code's extensible architecture.
 
-## Overview
+## 📋 Overview
 
-This project provides a comprehensive set of Claude Code commands that implement multi-agent workflows for software development, including planning, execution, code review, and documentation management. The system uses GNU Stow for deployment and provides opinionated tool restrictions for optimal performance.
+This project provides a comprehensive set of [Claude Code](https://www.anthropic.com/claude-code) commands that implement multi-agent workflows for software development, including planning, execution, code review, and documentation management. The system uses [GNU Stow](https://www.gnu.org/software/stow/) for deployment and provides opinionated tool restrictions for optimal performance.
 
-## Quick Start
+## 🚀 Quick Start
 
 ### Installation
 
@@ -29,7 +29,7 @@ just --list
 just install
 ```
 
-## Command Reference
+## 📚 Command Reference
 
 ### 🧩 Planning and Architecture
 - **`/user-plan`** - Multi-agent research and execution planning
@@ -38,7 +38,7 @@ just install
 
 ### ⚙️ Development Workflow
 - **`/user-start`** - Begin execution from tasks.md
-- **`/user-lint`** - Language-specific linting (Python, TypeScript, SQL, Terraform)
+- **`/user-lint`** - Language-specific linting (Python, Go, TypeScript, SQL, Terraform)
 - **`/user-test`** - Intelligent test execution with focused scope
 - **`/user-git-commit`** - Logical commit creation with conventional commits
 - **`/user-git-pr`** - GitHub PR creation with automated descriptions
@@ -48,7 +48,7 @@ just install
 - **`/user-docs-refactor`** - Restructure and improve documentation
 - **`/user-rules-update`** - Update coding patterns and rules
 
-## Multi-Agent Workflows
+## 🤖 Multi-Agent Workflows
 
 ### Planning Process (`/user-plan`)
 Deploys 4 specialized agents in parallel:
@@ -69,7 +69,7 @@ Employs 3 analysis agents for commit optimization:
 - **Sequencing Agent** - Optimal commit ordering
 - **Type Agent** - Conventional commit classification
 
-## Primary Development Workflow
+## 🔄 Primary Development Workflow
 
 ```mermaid
 graph LR
@@ -85,10 +85,11 @@ graph LR
     H -.-> E
 ```
 
-## Tool Integration
+## 🛠️ Tool Integration
 
 ### Supported Languages and Tools
 - **Python**: `ruff`, `pyright`, `pytest`
+- **Go**: `golangci-lint`, `go vet`, `go fmt`
 - **TypeScript**: `eslint`, `vitest`, `tsc`
 - **SQL**: `sqlfluff`
 - **Terraform**: `terraform validate`
@@ -98,7 +99,7 @@ graph LR
 - **Linear MCP**: Issue tracking and project management
 - **Sentry MCP**: Error tracking and monitoring
 
-## Configuration
+## ⚙️ Configuration
 
 ### Command Tool Restrictions
 Each command is optimized with minimal necessary tools:
@@ -111,25 +112,7 @@ Each command is optimized with minimal necessary tools:
 | user-test | Testing | Bash, LS, Grep, Read |
 | user-review | Code review | Read, Glob, Grep, Agent, Bash, TodoRead |
 
-### Settings Hierarchy
-1. **Global Settings**: `claude/.config/claude/settings.json`
-2. **Local Overrides**: `.claude/settings.local.json`
-3. **Command Restrictions**: YAML frontmatter in command files
-
-## Development Environment
-
-### Editor Configuration
-- **EditorConfig**: Standardized formatting (2-space indents, 80-char lines)
-- **VS Code**: Type-specific formatters with format-on-save
-- **Git**: Conventional commits with automated grouping
-
-### Deployment
-Uses GNU Stow for symlink management:
-- Target directory: `$HOME`
-- Excludes: `.DS_Store`, temporary files
-- One-command installation: `just install`
-
-## Architecture
+## 🏗️ Architecture
 
 ### Configuration Management
 ```text
@@ -152,7 +135,7 @@ Commands implement sophisticated multi-agent patterns:
 - **Result Synthesis** - Unified findings compilation
 - **Coordinated Decision Making** - Collaborative recommendations
 
-## Contributing
+## 🤝 Contributing
 
 This project follows conventional commits and uses the integrated review system:
 
