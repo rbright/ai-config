@@ -1,0 +1,56 @@
+{
+  "[json][jsonc]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit"
+    },
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.indentSize": 2,
+    "editor.rulers": [
+      80
+    ]
+  },
+  "[just]": {
+    "editor.defaultFormatter": "nefrob.vscode-just-syntax",
+    "editor.formatOnSave": true,
+    "editor.indentSize": 2,
+    "editor.rulers": [
+      80
+    ]
+  },
+  "[markdown]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit"
+    },
+    "editor.indentSize": 2,
+    "editor.quickSuggestions": {
+      "comments": "off",
+      "other": "off",
+      "strings": "off"
+    },
+    "editor.wordWrap": "off"
+  },
+  "[shellscript]": {
+    "editor.indentSize": 2,
+    "editor.rulers": [
+      80
+    ],
+    "files.eol": "\n"
+  },
+  "[toml]": {
+    "editor.defaultFormatter": "tamasfe.even-better-toml",
+    "editor.formatOnSave": true,
+    "editor.indentSize": 2,
+    "editor.rulers": [
+      80
+    ]
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.indentSize": 2,
+    "editor.rulers": [
+      80
+    ]
+  },
+  "editor.formatOnSave": false
+}
