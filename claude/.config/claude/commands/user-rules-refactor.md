@@ -48,29 +48,29 @@ Analyze and refactor CLAUDE.md or AGENTS.md and their imported rules files into 
    - Ensure improved readability
    - Complete all validation tasks
 
-## 📊 Optimal Structure Pattern
+## Optimal Structure Pattern
 
-```
-🤖 CLAUDE.md or AGENTS.md (main entry point)
+```text
+CLAUDE.md or AGENTS.md (main entry point)
 ├── Project overview and context
 ├── Quick reference to common patterns
 └── Imports from .ai/instructions/
 
 .ai/instructions/
-├── 🏗️ 01-architecture.md      # System design patterns
-├── 💻 02-development.md        # Coding standards and practices
-├── 🧪 03-testing.md           # Testing strategies and patterns
-├── 📡 04-api.md               # API design and patterns
-├── 💾 05-database.md          # Database patterns and migrations
-├── 🔒 06-security.md          # Security best practices
-├── ⚡ 07-performance.md       # Performance optimization
-├── 🛠️ 08-deployment.md        # CI/CD and deployment
-└── 🏢 09-project-specific.md  # Unique project patterns
+├── 01-architecture.md      # System design patterns
+├── 02-development.md        # Coding standards and practices
+├── 03-testing.md           # Testing strategies and patterns
+├── 04-api.md               # API design and patterns
+├── 05-database.md          # Database patterns and migrations
+├── 06-security.md          # Security best practices
+├── 07-performance.md       # Performance optimization
+├── 08-deployment.md        # CI/CD and deployment
+└── 09-project-specific.md  # Unique project patterns
 ```
 
 ## Example Usage
 
-```sh
+```text
 User: /user-rules-refactor
 Assistant: I'll analyze your instruction files to create an optimal structure.
 
@@ -125,7 +125,7 @@ Ready to proceed with refactoring? This will:
 - Maintain all existing rules
 ```
 
-## 📝 Refactoring Principles
+## Refactoring Principles
 
 1. **Single Responsibility**: Each file should cover one domain
 2. **No Duplication**: Each rule defined exactly once

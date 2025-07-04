@@ -11,7 +11,7 @@ Comprehensive pre-PR review using specialized agents to analyze code changes for
 
 1. **Git Analysis**: Check current branch and compare against main to identify all modified files
 
-2. **Requirements Verification**: 
+2. **Requirements Verification**:
    - Check for linked issues and verify changes satisfy requirements
    - Review tasks.md to ensure all planned tasks are complete
    - Verify acceptance criteria from task definitions
@@ -24,7 +24,7 @@ Comprehensive pre-PR review using specialized agents to analyze code changes for
 
 4. **Automated Checks**: Run linting and tests to ensure code quality
 
-5. **Summary Report**: 
+5. **Summary Report**:
    - Compile findings from all agents with prioritized recommendations
    - Verify all tasks.md items are marked as completed
    - Confirm success criteria are met
@@ -71,8 +71,8 @@ The review command validates implementation against the tasks.md execution plan:
   - ✅ Connection handling implemented
   - ✅ Authentication middleware functional
   - **Review**: Code follows established patterns
-  
-- [x] Task 1.2: Create event listener service  
+
+- [x] Task 1.2: Create event listener service
   - ✅ Event subscription working
   - ✅ Event filtering implemented correctly
   - ⚠️  Error handling could be more robust
@@ -123,7 +123,7 @@ None found.
 
 ## Example Usage
 
-```sh
+```text
 User: /user-review
 Assistant: I'll conduct a comprehensive pre-PR review of your changes and validate against the execution plan.
 
@@ -154,7 +154,7 @@ Deploying 3 specialized review agents...
 
 **Task Completion Review**
 Phase 1: ✅ All foundation tasks complete
-Phase 2: ✅ All implementation tasks complete  
+Phase 2: ✅ All implementation tasks complete
 Phase 3: ⚠️  1 of 2 tasks fully complete
 
 **Success Criteria**

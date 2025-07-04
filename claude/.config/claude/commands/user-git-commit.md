@@ -60,7 +60,7 @@ Analyze uncommitted files, group them into cohesive commits, and create commits 
 
 ## Example Usage
 
-```sh
+```text
 User: /user-git-commit
 Assistant: I'll analyze your uncommitted changes and create logical commits.
 
@@ -131,7 +131,7 @@ Ready to push when you're ready.
 ## Advanced Scenarios
 
 ### Breaking Changes
-```
+```text
 feat(api)!: change authentication to OAuth2
 
 BREAKING CHANGE: JWT tokens are no longer supported.
@@ -139,7 +139,7 @@ Users must re-authenticate using OAuth2 flow.
 ```
 
 ### Multi-scope Changes
-```
+```text
 fix(api,db): resolve data consistency issue
 
 - Fixed API validation

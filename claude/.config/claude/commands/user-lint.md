@@ -57,7 +57,7 @@ Run the appropriate linters and type checkers based on the types of files that h
 ## Example Usage
 
 ### Python Example
-```sh
+```text
 User: /user-lint
 Assistant: I'll check which files were modified and run the appropriate linters and type checkers.
 
@@ -81,7 +81,7 @@ Please fix the type errors before committing.
 ```
 
 ### TypeScript Example
-```sh
+```text
 User: /user-lint
 Assistant: I'll check which files were modified and run the appropriate linters and type checkers.
 
@@ -108,7 +108,7 @@ Please fix the linting and type errors before committing.
 ```
 
 ### Go Example
-```sh
+```text
 User: /user-lint
 Assistant: I'll check which files were modified and run the appropriate linters and type checkers.
 

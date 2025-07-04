@@ -57,7 +57,7 @@ Begin executing the plan created in `tasks.md` with focus on implementation best
 
 ## Example Usage
 
-```sh
+```text
 User: /user-start
 Assistant: I'll begin executing the plan from tasks.md.
 

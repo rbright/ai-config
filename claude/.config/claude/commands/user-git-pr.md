@@ -54,7 +54,7 @@ Create a GitHub pull request following the Conventional Commits standard with au
 
 ## Example Usage
 
-```sh
+```text
 User: /user-git-pr
 Assistant: I'll analyze your changes and create a pull request following Conventional Commits standards.
 

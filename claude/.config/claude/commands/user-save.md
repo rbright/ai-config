@@ -45,7 +45,7 @@ Capture current work progress and relevant files to `tasks.md` for seamless sess
 
 ## Example Usage
 
-```sh
+```text
 User: /user-save
 Assistant: I'll capture the current session progress and save it to tasks.md.
 

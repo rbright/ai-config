@@ -34,10 +34,10 @@ Keep documentation current with the latest project structure, business logic, co
    - Update todo list with any new discoveries
 
 5. **Update documentation sections**:
-   - **📋 README.md**: Commands, quick start, project overview
-   - **🧩 Component Overviews**: Purpose, interfaces, dependencies
-   - **⚙️ Business Logic**: Core rules, workflows, decision trees
-   - **🏗️ Architecture Diagrams**: System design, data flow, component interactions
+   - **README.md**: Commands, quick start, project overview
+   - **Component Overviews**: Purpose, interfaces, dependencies
+   - **Business Logic**: Core rules, workflows, decision trees
+   - **Architecture Diagrams**: System design, data flow, component interactions
 
 6. **Update or create Mermaid diagrams**:
    - Component architecture diagrams
@@ -53,9 +53,9 @@ Keep documentation current with the latest project structure, business logic, co
 
 ## Documentation Types to Update
 
-### 🧩 Component Documentation
+### Component Documentation
 ```markdown
-## 🧩 Component: UserService
+## Component: UserService
 
 **Purpose**: Manages user authentication and profile operations
 
@@ -70,9 +70,9 @@ Keep documentation current with the latest project structure, business logic, co
 - EmailService
 ```
 
-### ⚙️ Business Logic Documentation
+###  Business Logic Documentation
 ```markdown
-## ⚙️ Order Processing Logic
+## Order Processing Logic
 
 1. **Validation Phase**
    - Check inventory availability
@@ -103,7 +103,7 @@ graph TD
 
 ## Example Usage
 
-```sh
+```text
 User: /user-docs-update
 Assistant: I'll analyze your project and update all documentation to reflect current implementation.
 
@@ -166,7 +166,6 @@ stateDiagram-v2
     Failed --> Cancelled: Max retries reached
     Success --> [*]
     Cancelled --> [*]
-```
 
 All documentation updated to reflect current business logic!
 ```
@@ -179,18 +178,18 @@ graph TB
     subgraph "Frontend"
         UI[React UI]
     end
-    
+
     subgraph "Backend"
         API[API Gateway]
         Auth[Auth Service]
         Business[Business Logic]
     end
-    
+
     subgraph "Data"
         DB[(Database)]
         Cache[(Redis)]
     end
-    
+
     UI --> API
     API --> Auth
     API --> Business
@@ -205,7 +204,7 @@ sequenceDiagram
     participant A as API
     participant S as Service
     participant D as Database
-    
+
     U->>A: Request
     A->>S: Process
     S->>D: Query

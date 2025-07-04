@@ -38,7 +38,7 @@ Run the appropriate test suite based on the types of files that have been modifi
 
 ## Example Usage
 
-```sh
+```text
 User: /user-test
 Assistant: I'll check which files were modified and run the appropriate tests.
 

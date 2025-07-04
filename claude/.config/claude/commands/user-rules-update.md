@@ -38,7 +38,7 @@ Automatically document new patterns in the CLAUDE.md file of the most relevant d
 
 5. **Format the new pattern documentation**:
    ```markdown
-   ### 📝 [Pattern Name]
+   ### [Pattern Name]
 
    **Description**: [What this pattern does and why]
 
@@ -64,7 +64,7 @@ Automatically document new patterns in the CLAUDE.md file of the most relevant d
    - Update root CLAUDE.md imports if needed
    - Complete all documentation tasks
 
-## 📍 Location Selection Logic
+## Location Selection Logic
 
 The command determines the best location by:
 1. **Scope Analysis**: Where are the changes located?
@@ -80,7 +80,7 @@ The command determines the best location by:
 
 ## Example Usage
 
-```sh
+```text
 User: /user-rules-update
 Assistant: I'll analyze recent changes to identify new patterns and document them in the appropriate location.
 
@@ -123,25 +123,25 @@ Updated libs/database/CLAUDE.md:
 Patterns documented in their most relevant locations!
 ```
 
-## 📊 Directory Structure Examples
+## Directory Structure Examples
 
-```
+```text
 project/
-├── 🤖 CLAUDE.md (cross-cutting patterns)
+├── CLAUDE.md (cross-cutting patterns)
 ├── apps/
-│   ├── 📡 api/
+│   ├── api/
 │   │   └── CLAUDE.md (API-specific patterns)
-│   └── 📱 frontend/
+│   └── frontend/
 │       └── CLAUDE.md (Frontend patterns)
 ├── services/
-│   ├── 🔒 auth/
+│   ├── auth/
 │   │   └── CLAUDE.md (Auth service patterns)
-│   └── 💳 billing/
+│   └── billing/
 │       └── CLAUDE.md (Billing patterns)
 └── libs/
-    ├── 💾 database/
+    ├── database/
     │   └── CLAUDE.md (Database patterns)
-    └── 🛠️ shared/
+    └── shared/
         └── CLAUDE.md (Shared utilities)
 ```
 

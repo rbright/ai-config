@@ -10,7 +10,7 @@ This project provides a comprehensive set of Claude Code commands that implement
 
 ### Installation
 
-```bash
+```sh
 # Clone the repository
 git clone <repository-url> ai-config
 cd ai-config
@@ -21,7 +21,7 @@ just install
 
 ### Available Commands
 
-```bash
+```sh
 # Show all available commands
 just --list
 
@@ -132,7 +132,7 @@ Uses GNU Stow for symlink management:
 ## Architecture
 
 ### Configuration Management
-```
+```text
 ai-config/
 ├── justfile                    # Build automation
 ├── tasks.md                    # Central task planning

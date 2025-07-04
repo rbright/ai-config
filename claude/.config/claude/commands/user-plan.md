@@ -97,7 +97,7 @@ The command creates a detailed execution plan in tasks.md with the following str
   - Add authentication middleware
   - **Complexity**: Medium
   - **Dependencies**: None
-  
+
 - [ ] Task 1.2: Create event listener service
   - Subscribe to workflow events
   - Implement event filtering
@@ -112,7 +112,7 @@ The command creates a detailed execution plan in tasks.md with the following str
   - Implement message handlers
   - **Complexity**: Medium
   - **Dependencies**: Task 1.1
-  
+
 - [ ] Task 2.2: Real-time UI updates
   - Create notification components
   - Update state management
@@ -160,7 +160,7 @@ The command creates a detailed execution plan in tasks.md with the following str
 
 ## Example Usage
 
-```sh
+```text
 User: /user-plan Implement real-time notifications for workflow status changes
 Assistant: I'll research the requirements and create a comprehensive execution plan.
 

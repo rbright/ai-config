@@ -17,7 +17,7 @@ This repository contains a sophisticated multi-agent command system for Claude C
 
 Commands are stored in `claude/.config/claude/commands/` and follow this structure:
 
-```yaml
+```markdown
 ---
 allowed-tools:
   - Read
@@ -41,11 +41,11 @@ Detailed implementation instructions including:
 
 ## Example Usage
 
-```sh
+```text
 User: /command-name
 Assistant: [Expected behavior and output]
 ```
-```
+
 
 ### Tool Restriction Guidelines
 
@@ -67,7 +67,7 @@ Each command should specify minimal necessary tools in YAML frontmatter:
 
 #### Parallel Agent Deployment
 For research and planning commands:
-```
+```text
 Deploy specialized agents simultaneously:
 - Architecture Agent (structure analysis)
 - Implementation Agent (solution research)
@@ -77,7 +77,7 @@ Deploy specialized agents simultaneously:
 
 #### Sequential Agent Review
 For quality assurance commands:
-```
+```text
 Deploy agents in sequence:
 - Code Quality Agent → Security Agent → Best Practices Agent
 - Each builds on previous findings
@@ -85,7 +85,7 @@ Deploy agents in sequence:
 
 #### Pipeline Agent Processing
 For git integration commands:
-```
+```text
 Deploy agents in pipeline:
 - Grouping Agent → Sequencing Agent → Type Agent
 - Transform data through each stage
@@ -209,7 +209,7 @@ Tool access is controlled at multiple levels:
 
 ## Example Command Template
 
-```yaml
+```markdown
 ---
 allowed-tools:
   - Read
@@ -233,7 +233,7 @@ Template command for creating new AI-assisted development workflows.
 
 ## Multi-Agent Pattern
 
-```
+```text
 IF complex analysis required
 THEN deploy specialized agents:
   - Agent A (specific domain)
@@ -244,7 +244,7 @@ ELSE use single-agent approach
 
 ## Example Usage
 
-```sh
+```text
 User: /user-template
 Assistant: I'll analyze your request and execute the template workflow.
 
@@ -259,10 +259,3 @@ Template workflow complete. Next steps: [specific guidance]
 - **External Services**: Integrates with relevant MCP tools
 - **Quality Gates**: Includes appropriate validation steps
 - **Documentation**: Updates related documentation as needed
-```
-
-This template provides a foundation for creating new commands while maintaining consistency with the existing system architecture and patterns.
-
----
-
-*Note: This repository focuses on command definitions and configuration. Extensive documentation hierarchies under docs/ are unnecessary for this scope. Keep documentation focused and practical.*
