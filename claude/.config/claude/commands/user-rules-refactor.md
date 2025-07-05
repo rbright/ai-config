@@ -18,7 +18,7 @@ Analyze and refactor CLAUDE.md or AGENTS.md and their imported rules files into 
 2. **Discovery Phase**:
    - Find CLAUDE.md or AGENTS.md in project root
    - Identify all imported rule files
-   - Scan for `.ai/rules/`, `.ai/instructions/`, or similar directories
+   - Scan for `.ai/instructions/` or similar directories
    - Map current file structure and dependencies
 
 3. **Analysis Phase**:
@@ -78,7 +78,7 @@ Discovering current structure...
 
 Found:
 - AGENTS.md (main file)
-- .ai/rules/ directory with 12 files
+- .ai/instructions/ directory with 12 files
 - Some rules duplicated across 3 files
 
 Deploying analysis agents...
