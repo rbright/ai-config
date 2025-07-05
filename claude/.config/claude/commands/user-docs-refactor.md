@@ -164,6 +164,7 @@ See [Contributing Guidelines](docs/contributing/guidelines.md)
 3. **Progressive Disclosure**: Overview → Details → Reference
 4. **Cross-Linking**: Easy navigation between related docs
 5. **Maintainability**: Clear structure for adding new docs
+6. **No Community Docs**: Do NOT include Code of Conduct, Community Guidelines, or similar sections - focus only on technical documentation
 
 ## Notes
 
