@@ -1,6 +1,5 @@
 {
   "cleanupPeriodDays": 30,
-  "defaultMode": "plan",
   "env": {
     "BASH_DEFAULT_TIMEOUT_MS": "120000",
     "BASH_MAX_TIMEOUT_MS": "300000",
@@ -13,5 +12,8 @@
     "MCP_TIMEOUT": "10000",
     "MCP_TOOL_TIMEOUT": "15000"
   },
-  "includeCoAuthoredBy": true
+  "includeCoAuthoredBy": true,
+  "permissions": {
+    "defaultMode": "plan"
+  }
 }
