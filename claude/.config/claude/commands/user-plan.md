@@ -1,216 +1,357 @@
 ---
-allowed-tools: Read, Glob, Grep, Agent, TodoWrite, WebFetch
-description: Research and analyze a problem to create a comprehensive execution plan
+allowed-tools: Read, Glob, Grep, Task, TodoWrite, WebFetch
+description: Analyze requirements and create comprehensive execution plans using specialized sub-agents
 ---
 
 # user-plan
 
-Research and analyze a problem statement to create a comprehensive execution plan using parallel agents.
+Analyze a problem statement to create comprehensive requirements documentation and execution plans using specialized sub-agents for each technical domain.
 
 ## Implementation
 
 1. Parse input to extract problem context:
    - Check for issue tracker links (use MCP tools to fetch details)
-   - Identify file paths mentioned
-   - Extract key requirements and constraints
-   - Determine the scope of work
+   - Identify specific requirements or user stories
+   - Extract any technical constraints mentioned
+   - Determine the initial scope of work
 
-2. Launch parallel research agents:
-   - **Architecture Agent**: Analyze codebase structure and patterns
-   - **Implementation Agent**: Research similar implementations and solutions
-   - **Testing Agent**: Identify testing requirements and strategies
-   - **Documentation Agent**: Find relevant documentation and patterns
+2. Deploy Product Manager sub-agent:
+   - **Task**: Analyze the problem and create comprehensive `requirements.md`
+   - **Input**: Problem statement, issue tracker details, user context
+   - **Output**: Structured requirements document with:
+     - Functional requirements
+     - Non-functional requirements
+     - Technical breakdown by domain (Backend, Frontend, Infrastructure, ML)
+     - Acceptance criteria
+     - Out of scope items
 
-3. Synthesize research findings:
-   - Compile discoveries from all agents
-   - Identify technical challenges and risks
-   - Find relevant patterns in documentation
-   - Determine required dependencies and tools
+3. Analyze requirements to identify needed sub-agents:
+   Based on the requirements.md created by Product Manager, determine which agents are needed:
+   
+   - **Backend Engineer**: If API development, business logic, or data models are required
+   - **Frontend Engineer**: If UI components, user interfaces, or client-side logic are needed
+   - **Infrastructure Engineer**: If new resources, deployment changes, or scaling is required
+   - **Data Engineer**: If ETL pipelines, data transformations, or warehouse integration is needed
+   - **Machine Learning Engineer**: If ML models, training pipelines, or AI features are required
 
-4. Create comprehensive execution plan:
-   - Break down work into concrete, actionable tasks
-   - Estimate complexity for each task
-   - Identify dependencies between tasks
-   - Note potential blockers or uncertainties
+4. Deploy ONLY relevant implementation sub-agents in parallel:
+   For each identified domain, deploy the corresponding agent to create their execution plan:
+   
+   - Each agent creates tasks in their respective `.claude/tasks/[agent-name]-tasks.md`
+   - Agents analyze only their domain-specific requirements
+   - Cross-team dependencies are identified and documented
 
-5. Generate structured plan in `tasks.md`:
-   - Use markdown task list format
-   - Include context, objectives, and success criteria
-   - Add discovered patterns and architectural decisions
-   - List clarifying questions for user
+5. Create root-level tasks.md:
+   Document which agents are involved in this work:
+   ```markdown
+   # Project: [Project Name]
+   
+   ## Active Sub-Agents
+   - [ ] Backend Engineer - API and business logic development
+   - [ ] Frontend Engineer - UI components and user experience
+   - [ ] Infrastructure Engineer - Resource provisioning
+   
+   ## Task Lists
+   - Backend: `.claude/tasks/backend-engineer-tasks.md`
+   - Frontend: `.claude/tasks/frontend-engineer-tasks.md`
+   - Infrastructure: `.claude/tasks/infra-engineer-tasks.md`
+   
+   ## Coordination Points
+   - Backend ↔ Frontend: API contract definition
+   - Infrastructure → All: Resource provisioning must complete first
+   ```
 
-6. Request user approval:
-   - Present summary of the plan
-   - Highlight any concerns or risks
-   - Wait for user confirmation before proceeding
+6. Deploy Orchestrator sub-agent:
+   - Synthesize execution plans from active agents only
+   - Identify cross-team dependencies
+   - Create coordination timeline
+   - Generate unified project overview
 
-## Research Agent Patterns
+7. Present comprehensive planning results:
+   - Summary of requirements from Product Manager
+   - List of active sub-agents and why they're needed
+   - Overview of each active team's execution plan
+   - Key dependencies and coordination points
+   - Timeline and resource requirements
+   - Risks and mitigation strategies
 
-### Architecture Agent
-- Reviews project structure and existing patterns
-- Identifies where new code should be placed
-- Finds similar features for reference
-- Checks architectural constraints
+8. Request user approval:
+   - Present the complete plan
+   - Show which agents will be involved
+   - Highlight any concerns or clarifications needed
+   - Confirm readiness to proceed with implementation
 
-### Implementation Agent
-- Searches for existing code to reuse or extend
-- Identifies required models, services, or components
-- Finds relevant utilities and helpers
-- Checks for potential conflicts
+## Sub-Agent Deployment
 
-### Testing Agent
-- Identifies existing test patterns
-- Determines test data requirements
-- Finds relevant test utilities and fixtures
-- Plans test scenarios
+### Product Manager
+- Synthesizes problem statement into formal requirements
+- Creates comprehensive `requirements.md` document
+- Breaks down requirements by technical domain
+- Defines acceptance criteria and scope
 
-### Documentation Agent
-- Searches project documentation for patterns
-- Finds relevant technical documentation
-- Identifies documentation that needs updates
-- Checks for coding conventions
+### Backend Engineer
+- Analyzes backend requirements from Product Manager
+- Creates detailed task list for API development
+- Plans data model and business logic implementation
+- Identifies integration points with other services
 
-## tasks.md Structure
+### Frontend Engineer  
+- Reviews UI/UX requirements from Product Manager
+- Plans component architecture and state management
+- Creates tasks for API integration and user flows
+- Identifies responsive design and accessibility needs
 
-The command creates a detailed execution plan in tasks.md with the following structure:
+### Infrastructure Engineer
+- Assesses infrastructure requirements across all domains
+- Plans resource provisioning and scaling strategy
+- Creates deployment pipeline tasks
+- Identifies monitoring and security needs
+
+### Data Engineer
+- Analyzes data pipeline requirements
+- Plans ETL workflows and transformations
+- Creates tasks for data quality and validation
+- Identifies integration with ML and backend needs
+
+### Machine Learning Engineer
+- Reviews ML opportunities in requirements
+- Plans model development and evaluation tasks
+- Creates training pipeline architecture
+- Identifies data dependencies and deployment needs
+
+### Orchestrator
+- Coordinates information flow between agents
+- Identifies cross-team dependencies
+- Creates unified project timeline
+- Manages integration points
+
+## Output Structure
+
+The command creates distributed execution plans across multiple files:
+
+### 1. Requirements Document (`requirements.md`)
+Created by Product Manager sub-agent:
 
 ```markdown
-# [Project/Feature Name]
+# Feature: [Feature Name]
 
-## Context
-[Problem description and background]
+## Overview
+[High-level description of the feature and its business value]
 
-## Objectives
-- [ ] Primary goal 1
-- [ ] Primary goal 2
-- [ ] Primary goal 3
+## Functional Requirements
+- FR1: [Detailed requirement]
+- FR2: [Detailed requirement]
 
-## Technical Approach
-[High-level solution architecture]
+## Non-Functional Requirements
+- Performance: [Specific metrics]
+- Security: [Security requirements]
+- Scalability: [Scaling needs]
 
-## Execution Plan
+## Technical Breakdown
 
-### Phase 1: Foundation
-- [ ] Task 1.1: Set up WebSocket infrastructure
-  - Create WebSocket endpoint in backend
-  - Configure connection handling
-  - Add authentication middleware
-  - **Complexity**: Medium
-  - **Dependencies**: None
+### Backend Requirements
+- API endpoints needed
+- Data models and schemas
+- Business logic rules
+- Integration points
 
-- [ ] Task 1.2: Create event listener service
-  - Subscribe to workflow events
-  - Implement event filtering
-  - Add error handling
-  - **Complexity**: High
-  - **Dependencies**: Task 1.1
+### Frontend Requirements
+- UI components and layouts
+- User interaction flows
+- State management needs
+- Responsive design requirements
 
-### Phase 2: Implementation
-- [ ] Task 2.1: Frontend WebSocket client
-  - Set up WebSocket connection
-  - Handle reconnection logic
-  - Implement message handlers
-  - **Complexity**: Medium
-  - **Dependencies**: Task 1.1
+### Infrastructure Requirements
+- Deployment architecture
+- Resource requirements
+- Monitoring and alerting
+- Security configurations
 
-- [ ] Task 2.2: Real-time UI updates
-  - Create notification components
-  - Update state management
-  - Add visual indicators
-  - **Complexity**: Low
-  - **Dependencies**: Task 2.1
+### Machine Learning Requirements
+- Model performance targets
+- Training data needs
+- Inference latency requirements
 
-### Phase 3: Production Readiness
-- [ ] Task 3.1: Error handling and recovery
-  - Implement circuit breaker
-  - Add retry logic
-  - Create fallback mechanisms
-  - **Complexity**: Medium
-  - **Dependencies**: Tasks 2.1, 2.2
+## Acceptance Criteria
+- [ ] Criterion 1
+- [ ] Criterion 2
+- [ ] Criterion 3
 
-- [ ] Task 3.2: Performance optimization
-  - Add connection pooling
-  - Implement message batching
-  - Optimize payload size
-  - **Complexity**: High
-  - **Dependencies**: All previous tasks
+## Out of Scope
+- Item 1
+- Item 2
+```
 
-## Technical Decisions
-- **WebSockets vs SSE**: Chose WebSockets for bidirectional communication
-- **Auth Strategy**: JWT tokens in connection params
-- **Scaling Approach**: Redis pub/sub for multi-instance support
+### 2. Backend Tasks (`.claude/tasks/backend-engineer-tasks.md`)
+Created by Backend Engineer sub-agent:
 
-## Risks & Mitigations
-- **Risk**: High concurrent connections
-  - **Mitigation**: Connection pooling and rate limiting
-- **Risk**: Network instability
-  - **Mitigation**: Automatic reconnection with exponential backoff
+```markdown
+# Backend Engineer Tasks
 
-## Success Criteria
-- [ ] Real-time updates within 100ms
-- [ ] Support 1000+ concurrent connections
-- [ ] 99.9% uptime for notification service
-- [ ] Zero message loss during reconnections
+## In Progress
+- [ ] Task: [Current task description]
 
-## Open Questions
-1. Should we implement message persistence for offline users?
-2. What's the retention policy for notifications?
-3. Do we need read receipts for notifications?
+## To Do
+- [ ] API: POST /api/notifications - Create notification endpoint
+- [ ] Model: Design notification data schema
+- [ ] Service: Implement notification business logic
+- [ ] Integration: Connect to message queue
+
+## Completed
+- [x] Setup: Initialize project structure (completed: 2024-01-15)
+```
+
+### 3. Frontend Tasks (`.claude/tasks/frontend-engineer-tasks.md`)
+Created by Frontend Engineer sub-agent:
+
+```markdown
+# Frontend Engineer Tasks
+
+## In Progress
+- [ ] Component: Building notification panel
+
+## To Do
+- [ ] Component: Create notification bell icon
+- [ ] State: Implement notification store
+- [ ] Integration: Connect WebSocket client
+- [ ] UI: Add real-time update animations
+
+## Completed
+- [x] Setup: Configure React project (completed: 2024-01-15)
+```
+
+### 4. Infrastructure Tasks (`.claude/tasks/infra-engineer-tasks.md`)
+Created by Infrastructure Engineer sub-agent:
+
+```markdown
+# Infrastructure Engineer Tasks
+
+## In Progress
+- [ ] Terraform: Creating WebSocket infrastructure module
+
+## To Do
+- [ ] Provision: Set up WebSocket load balancer
+- [ ] Scale: Configure auto-scaling policies
+- [ ] Monitor: Set up CloudWatch alerts
+- [ ] Security: Configure WAF rules
+
+## Completed
+- [x] VPC: Created network infrastructure (completed: 2024-01-15)
+```
+
+### 5. Data Tasks (`.claude/tasks/data-engineer-tasks.md`)
+Created by Data Engineer sub-agent (if applicable):
+
+```markdown
+# Data Engineer Tasks
+
+## In Progress
+- [ ] Pipeline: Building notification analytics pipeline
+
+## To Do
+- [ ] Extract: Pull notification events from queue
+- [ ] Transform: Aggregate notification metrics
+- [ ] Load: Store in analytics warehouse
+
+## Completed
+- [x] Schema: Designed analytics tables (completed: 2024-01-15)
+```
+
+### 6. ML Tasks (`.claude/tasks/machine-learning-engineer-tasks.md`)
+Created by ML Engineer sub-agent (if applicable):
+
+```markdown
+# Machine Learning Engineer Tasks
+
+## In Progress
+- [ ] Model: Training notification prioritization model
+
+## To Do
+- [ ] Data: Prepare training dataset
+- [ ] Train: Implement model training pipeline
+- [ ] Evaluate: Create evaluation metrics
+- [ ] Deploy: Prepare model for inference
+
+## Completed
+- [x] Research: Analyzed ML opportunities (completed: 2024-01-15)
 ```
 
 ## Example Usage
 
 ```text
 User: /user-plan Implement real-time notifications for workflow status changes
-Assistant: I'll research the requirements and create a comprehensive execution plan.
+Assistant: I'll analyze the requirements and deploy specialized sub-agents to create execution plans.
 
-Launching parallel research agents to analyze the problem...
+Deploying Product Manager to analyze requirements...
 
-[Architecture Agent]
-- Current system uses REST APIs without WebSocket support
-- Frontend uses modern React with state management
-- No existing real-time infrastructure found
-- Backend framework supports WebSocket implementation
+[Product Manager]
+Created requirements.md with:
+- Functional requirements for real-time notifications
+- Performance requirement: <100ms latency
+- Technical breakdown identifying need for:
+  - Backend: WebSocket API implementation
+  - Frontend: Real-time UI components
+  - Infrastructure: WebSocket load balancing
+  - Data: Notification analytics pipeline (optional)
+  - ML: Not required for this feature
 
-[Implementation Agent]
-- WebSocket libraries available for chosen framework
-- Frontend would need WebSocket client setup
-- Consider Server-Sent Events as simpler alternative
-- Message queue might be needed for reliability
+Identifying required sub-agents based on requirements...
+✅ Backend Engineer - Required for WebSocket API
+✅ Frontend Engineer - Required for notification UI
+✅ Infrastructure Engineer - Required for WebSocket infrastructure
+✅ Data Engineer - Optional for analytics
+❌ Machine Learning Engineer - Not needed
 
-[Testing Agent]
-- WebSocket testing requires special fixtures
-- Need to mock real-time event streams
-- Frontend testing with mock WebSocket server
-- Integration tests for full flow
+Deploying 3 required implementation sub-agents...
 
-[Documentation Agent]
-- No real-time patterns in current docs
-- WebSocket patterns would be new architecture
-- Need to document event flow and error handling
-- Security considerations for auth over WebSocket
+[Backend Engineer]
+Created execution plan in .claude/tasks/backend-engineer-tasks.md:
+- Design WebSocket connection manager
+- Implement notification event handlers
+- Create message queue integration
+- Add authentication for WebSocket
 
-Synthesizing research and creating execution plan...
+[Frontend Engineer]
+Created execution plan in .claude/tasks/frontend-engineer-tasks.md:
+- Build notification bell component
+- Implement WebSocket client service
+- Create notification panel UI
+- Add real-time state management
 
-✅ Created comprehensive plan in tasks.md with:
-- 6 actionable tasks across 3 phases
-- Clear dependencies and complexity estimates
-- Technical decisions documented
-- Risk mitigation strategies
-- Success criteria defined
+[Infrastructure Engineer]
+Created execution plan in .claude/tasks/infra-engineer-tasks.md:
+- Provision WebSocket load balancer
+- Configure auto-scaling for WebSocket servers
+- Set up monitoring for connection metrics
+- Implement failover strategy
 
-The plan includes Foundation (WebSocket setup), Implementation (client integration), and Production Readiness phases. Each task has clear acceptance criteria.
+Created root tasks.md with:
+- Active agents: Backend, Frontend, Infrastructure
+- Task list locations for each agent
+- Key coordination points identified
 
-Ready to proceed with implementation? Use /user-start to begin execution.
+[Orchestrator]
+Coordination timeline:
+1. Infrastructure provisions resources (Day 1-2)
+2. Backend implements API (Day 2-4)
+3. Frontend builds UI in parallel (Day 2-4)
+4. Integration testing (Day 5)
+5. Production deployment (Day 6)
+
+Dependencies identified:
+- Frontend blocked on Backend API contract
+- Both blocked on Infrastructure provisioning
+
+Ready to proceed? Use /user-start to begin execution with the 3 active agents.
 ```
 
 ## Notes
 
-- Uses multiple specialized agents for comprehensive research
-- Creates detailed, actionable plans based on actual codebase analysis
-- Identifies technical challenges and architectural decisions upfront
-- Always requests user approval before proceeding with implementation
+- Deploys Product Manager first to create formal requirements
+- Analyzes requirements to identify which sub-agents are needed
+- Only deploys relevant implementation agents (no unnecessary agents)
+- Each agent maintains their own task list in `.claude/tasks/[agent-name]-tasks.md`
+- Creates root `tasks.md` listing active agents and coordination points
+- Orchestrator coordinates only between active agents
+- Always requests user approval before proceeding
 - Integrates with issue tracking tools via MCP when applicable
-- Creates structured task lists in tasks.md for execution
-- Each task includes complexity estimates and dependencies
-- Plan includes risk assessment and success criteria
