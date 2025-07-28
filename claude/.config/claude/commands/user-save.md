@@ -1,87 +1,139 @@
 ---
-allowed-tools: Bash, TodoRead, Read, Write
-description: Save current work progress to tasks.md for session continuity
+allowed-tools: Read, Task, TodoRead, Write
+description: Deploy active agents to update their task lists with current progress
 ---
 
 # user-save
 
-Capture current work progress and relevant files to `tasks.md` for seamless session continuity.
+Deploy all active sub-agents to update their respective task lists with current progress, ensuring accurate state representation across the distributed system.
 
 ## Implementation
 
-1. **Check current git status and changes**:
-   - Run `git status --porcelain` to identify all file states
-   - Run `git diff --name-only` to get list of modified files
-   - Run `git diff --cached --name-only` for staged files
-   - Categorize files by their change type
+1. **Read root tasks.md**:
+   - Identify all active sub-agents from "Active Sub-Agents" section
+   - Extract task list locations for each agent
+   - Note the project context and current phase
 
-2. **Read current todo list**:
-   - Use TodoRead tool to get current task status
-   - Organize tasks by status (in_progress, completed, pending)
-   - Calculate progress percentage
-   - Identify blocked tasks
+2. **Deploy each active agent to update their state**:
+   For each active agent in tasks.md, deploy them with instructions to:
 
-3. **Analyze recent work**:
-   - Get last few commits with `git log --oneline -5`
-   - Identify which files might need documentation updates
-   - Check for patterns that emerged during work
-   - Note any technical decisions made
+   - **Review their current task list** in `.claude/tasks/[agent-name]-tasks.md`
+   - **Analyze recent work** in their domain (git diff, file changes)
+   - **Update task statuses**:
+     - Mark completed tasks with completion date
+     - Update progress on in-progress tasks
+     - Add any new tasks discovered during work
+     - Note any blockers or dependencies
 
-4. **Generate comprehensive session summary**:
-   - Current context and what was being worked on
-   - In-progress tasks with their current status
-   - Completed tasks from this session
-   - Modified files grouped by purpose
-   - Any new patterns or insights discovered
-   - Technical decisions and trade-offs
-   - Next steps for continuation
+3. **Agent-specific updates**:
 
-5. **Update or create `tasks.md`**:
-   - If file exists, append new session with timestamp
-   - If new file, create with full structure
-   - Preserve any existing content
-   - Add clear session separator
-   - Include session metadata (duration, focus area)
+   **Implementation Agents** (Backend, Frontend, Infrastructure, Data, ML):
+   - Update completion percentage on current tasks
+   - Document technical decisions made
+   - Add new tasks for discovered edge cases
+   - Note integration points with other agents
+
+   **Review Agents** (QA, Code Reviewer, Security):
+   - Update findings from latest reviews
+   - Mark resolved issues as complete
+   - Add new issues discovered
+
+4. **Create session summary**:
+   After all agents update their lists, create a summary in root tasks.md:
+   ```markdown
+   ## Session Update - [Timestamp]
+
+   ### Progress Summary
+   - Backend: X/Y tasks complete (Z% progress)
+   - Frontend: X/Y tasks complete (Z% progress)
+   - Infrastructure: X/Y tasks complete (Z% progress)
+
+   ### Key Accomplishments
+   - [Agent]: [What was completed]
+
+   ### Blockers
+   - [Agent]: [What's blocking progress]
+
+   ### Next Session Focus
+   - Priority tasks across agents
+   ```
+
+5. **Synchronization check**:
+   - Verify all agent task lists were updated
+   - Check for any conflicting information
+   - Ensure dependencies are properly noted
 
 ## Example Usage
 
 ```text
 User: /user-save
-Assistant: I'll capture the current session progress and save it to tasks.md.
+Assistant: I'll deploy all active agents to update their task lists with current progress.
 
-Analyzing current work state...
+Reading root tasks.md...
 
-Git Status:
-- 5 modified files
-- 2 new files
-- 1 staged file
+Active Agents:
+- Backend Engineer
+- Frontend Engineer
+- Infrastructure Engineer
 
-Todo Status:
-- 3 completed tasks
-- 2 in-progress tasks
-- 4 pending tasks
+Deploying agents to update their task lists...
 
-Generating session summary...
+[Backend Engineer]
+Updating .claude/tasks/backend-engineer-tasks.md...
+✅ Marked complete: Implement JWT authentication
+✅ Marked complete: Create user login endpoint
+⚙️  Updated progress: Password reset flow (70% complete)
+📝 Added new task: Handle edge case for expired tokens
+Blocked: Waiting on email service configuration
 
-Session saved to tasks.md:
-- Context: Implementing authentication system
-- Progress: 3 of 9 tasks completed (33%)
-- Completed: JWT token generation, login endpoint, user model
-- In Progress: Password reset flow (60%), profile endpoints (30%)
-- Modified: 7 files across auth, models, and tests
-- Key Decision: Using Redis for token blacklisting
-- Next steps: Complete password reset, add tests, security review
+[Frontend Engineer]
+Updating .claude/tasks/frontend-engineer-tasks.md...
+✅ Marked complete: Login form component
+⚙️  Updated progress: Password reset UI (40% complete)
+📝 Added new task: Add loading states for auth flows
+📝 Added new task: Implement remember me checkbox
+Note: Need API contract for profile endpoints
 
-✅ Session successfully saved for continuation!
+[Infrastructure Engineer]
+Updating .claude/tasks/infra-engineer-tasks.md...
+✅ Marked complete: Redis cluster for sessions
+✅ Marked complete: Email service configuration
+⚙️  Updated progress: Rate limiting setup (90% complete)
+Technical decision: Using AWS SES for email delivery
+
+Creating session summary in root tasks.md...
+
+## Session Update - 2024-01-20 15:30
+
+### Progress Summary
+- Backend: 5/9 tasks complete (56% progress)
+- Frontend: 3/8 tasks complete (38% progress)
+- Infrastructure: 6/7 tasks complete (86% progress)
+
+### Key Accomplishments
+- Backend: JWT auth and login endpoint working
+- Frontend: Login UI complete with validation
+- Infrastructure: Redis and email service ready
+
+### Blockers
+- Backend: Needs email templates for password reset
+- Frontend: Waiting on profile API contract
+
+### Next Session Focus
+- Complete password reset flow (Backend + Frontend)
+- Implement rate limiting (Infrastructure)
+- Add comprehensive auth tests
+
+✅ All agent task lists updated successfully!
 ```
 
 ## Notes
 
-- Always append to existing tasks.md rather than overwrite
-- Include enough context for resuming work later
-- Keep summaries concise but comprehensive
-- Focus on actionable information
-- Highlight blockers prominently
-- Include both technical and product decisions
-- Use consistent emoji indicators (✅, ⚠️, ❌)
-- Preserve the narrative flow of development
+- Deploys only active agents listed in root tasks.md
+- Each agent updates their own task list independently
+- Creates unified progress summary in root tasks.md
+- Preserves distributed task management structure
+- Captures technical decisions and blockers per agent
+- Enables accurate progress tracking across all domains
+- Session summaries appended, never overwritten
+- Synchronizes state across the entire system
