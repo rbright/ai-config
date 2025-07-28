@@ -1,60 +1,117 @@
 ---
-allowed-tools: Read, Glob, Grep, Agent, Bash, TodoRead
-description: Comprehensive pre-PR review using specialized agents
+allowed-tools: Read, Glob, Grep, Task, Bash, TodoRead, TodoWrite
+description: Deploy review sub-agents to analyze implementation and create remediation tasks
 ---
 
 # user-review
 
-Comprehensive pre-PR review using specialized agents to analyze code changes for quality, logic bugs, security vulnerabilities, and verification that linting and tests pass.
+Deploy QA, Code Reviewer, and Security Engineer sub-agents to comprehensively review the implementation, then synthesize their findings into actionable tasks for implementation agents.
 
 ## Implementation
 
-1. **Git Analysis**: Check current branch and compare against main to identify all modified files
+1. **Preparation Phase**:
+   - Read requirements.md to understand acceptance criteria
+   - Check root tasks.md to identify active implementation agents
+   - Run git diff to identify all modified files
+   - Prepare context for review agents
 
-2. **Requirements Verification**:
-   - Check for linked issues and verify changes satisfy requirements
-   - Review tasks.md to ensure all planned tasks are complete
-   - Verify acceptance criteria from task definitions
-   - Check technical decisions were implemented as documented
+2. **Deploy Review Sub-Agents in Parallel**:
+   
+   **QA Sub-Agent**:
+   - Task: Test functionality against requirements.md
+   - Create test report in `.claude/tasks/qa-tasks.md`
+   - Identify missing functionality, defects, and integration issues
+   - Verify acceptance criteria are met
+   
+   **Code Reviewer Sub-Agent**:
+   - Task: Review code quality and logic
+   - Create review report in `.claude/tasks/code-reviewer-tasks.md`
+   - Identify logic bugs, performance issues, architectural concerns
+   - Check adherence to CLAUDE.md conventions
+   
+   **Security Engineer Sub-Agent**:
+   - Task: Scan for security vulnerabilities
+   - Create security report in `.claude/tasks/security-engineer-tasks.md`
+   - Identify credential exposure, injection risks, access control issues
+   - Review cryptography and data protection
 
-3. **Agent Assignment**: Deploy 3 specialized agents to analyze the changes:
-   - **Code Quality Agent**: Identify logic bugs, performance issues, and architectural concerns
-   - **Security Agent**: Scan for security vulnerabilities, credential exposure, and safety issues
-   - **Best Practices Agent**: Verify adherence to language-specific patterns and conventions
+3. **Synthesis Phase**:
+   - Collect all findings from review agents
+   - Categorize issues by severity and responsible agent
+   - Create remediation tasks for each implementation agent
 
-4. **Automated Checks**: Run linting and tests to ensure code quality
+4. **Task Creation**:
+   Update implementation agent task lists with remediation tasks:
+   - Backend Engineer: API fixes, logic corrections, performance improvements
+   - Frontend Engineer: UI bugs, accessibility issues, state management fixes
+   - Infrastructure Engineer: Security hardening, monitoring gaps
+   - Data Engineer: Data quality issues, pipeline failures
+   - ML Engineer: Model performance issues, training problems
 
-5. **Summary Report**:
-   - Compile findings from all agents with prioritized recommendations
-   - Verify all tasks.md items are marked as completed
-   - Confirm success criteria are met
-   - Identify any deviations from the plan
+5. **Priority Assignment**:
+   - Critical: Security vulnerabilities, data loss risks
+   - High: Functional defects, performance problems
+   - Medium: Code quality issues, missing tests
+   - Low: Style issues, minor improvements
 
-## Agent Specializations
+## Review Agent Reports
 
-### Code Quality Agent
-Identifies technical issues:
-- Logic bugs: Null pointer exceptions, off-by-one errors, race conditions
-- Performance issues: N+1 queries, inefficient algorithms, memory leaks
-- Architecture concerns: Circular dependencies, tight coupling
-- Code complexity: Large functions, deeply nested conditionals
-- Error handling: Missing try/catch blocks, improper exception propagation
+### QA Report Structure
+Created in `.claude/tasks/qa-tasks.md`:
+```markdown
+# QA Test Report
 
-### Security Agent
-Scans for security vulnerabilities:
-- Credential exposure: API keys, passwords, tokens in code
-- Input validation: SQL injection, XSS, command injection risks
-- Data exposure: Sensitive information in logs or error messages
-- Access control: Missing authorization checks
-- Cryptography: Weak encryption, insecure random generation
+## Test Summary
+- Total Requirements Tested: X
+- Passed: X
+- Failed: X
 
-### Best Practices Agent
-Reviews against established patterns:
-- Language conventions: Naming, formatting, idiomatic code
-- Design patterns: Proper use of established patterns
-- Testing coverage: Adequate test scenarios
-- Documentation: Clear comments and docstrings
-- Dependencies: Secure and up-to-date packages
+## Critical Defects
+- [ ] [Feature]: Description of functional failure
+  - Steps to reproduce
+  - Expected vs Actual behavior
+
+## Requirements Gap Analysis
+- [ ] Missing: [Requirement not implemented]
+- [ ] Partial: [Requirement partially implemented]
+```
+
+### Code Reviewer Report Structure
+Created in `.claude/tasks/code-reviewer-tasks.md`:
+```markdown
+# Code Review Summary
+
+## Critical Issues
+- [ ] [File:Line]: Logic error description
+- [ ] [File:Line]: Performance bottleneck
+
+## Major Concerns
+- [ ] Architecture: [Design issue]
+- [ ] Complexity: [Refactoring needed]
+
+## Minor Suggestions
+- [ ] Style: [Convention violation]
+- [ ] Documentation: [Missing docs]
+```
+
+### Security Engineer Report Structure
+Created in `.claude/tasks/security-engineer-tasks.md`:
+```markdown
+# Security Assessment Report
+
+## Critical Vulnerabilities
+- [ ] [Type]: SQL Injection in [File:Line]
+  - Risk: High
+  - Recommendation: Use parameterized queries
+
+## High-Priority Findings
+- [ ] [Type]: Missing authentication on [Endpoint]
+- [ ] [Type]: Sensitive data in logs
+
+## Compliance Issues
+- [ ] GDPR: Personal data not encrypted
+- [ ] OWASP: Missing security headers
+```
 
 ## tasks.md Review Structure
 
@@ -125,65 +182,86 @@ None found.
 
 ```text
 User: /user-review
-Assistant: I'll conduct a comprehensive pre-PR review of your changes and validate against the execution plan.
+Assistant: I'll deploy review sub-agents to analyze the implementation and create remediation tasks.
 
-Reading tasks.md to verify implementation completeness...
+Preparing review context...
+- Requirements: Real-time notification system
+- Active agents: Backend, Frontend, Infrastructure
+- Modified files: 12 files across all domains
 
-Analyzing current branch changes...
-Found changes in 12 files implementing real-time notifications.
+Deploying review sub-agents in parallel...
 
-Deploying 3 specialized review agents...
+[QA Sub-Agent]
+Testing against requirements.md...
+✅ Real-time updates working (<100ms)
+✅ 1000+ concurrent connections supported
+❌ Missing: Notification persistence for offline users
+❌ Defect: Notifications lost on reconnection
+⚠️  Partial: Read receipts only work for online users
 
-**Agent 1 - Code Quality Analysis**
-✅ WebSocket implementation follows patterns
-✅ Event handling properly structured
-⚠️  WebSocketManager.handleReconnection() is complex (45 lines)
-✅ Memory management implemented correctly
+Created test report with 2 critical defects, 1 missing feature
 
-**Agent 2 - Security Analysis**
-✅ JWT validation in WebSocket handshake
-✅ No credential exposure detected
-✅ Input sanitization present
-⚠️  Consider rate limiting connections per user
+[Code Reviewer]
+Analyzing code quality...
+⚠️  WebSocketManager.handleReconnection() - 45 lines (too complex)
+⚠️  Missing error handling in notification service
+✅ API contracts well-defined
+✅ Good separation of concerns
+⚠️  3 functions missing TypeScript types
 
-**Agent 3 - Best Practices Analysis**
-✅ TypeScript interfaces well-defined
-⚠️  Missing types in utility functions
-✅ Error boundaries implemented
-✅ Logging follows standards
+Created review report with 3 major issues, 2 minor suggestions
 
-**Task Completion Review**
-Phase 1: ✅ All foundation tasks complete
-Phase 2: ✅ All implementation tasks complete
-Phase 3: ⚠️  1 of 2 tasks fully complete
+[Security Engineer]
+Scanning for vulnerabilities...
+🔴 Critical: Rate limiting not implemented (DoS risk)
+⚠️  High: User IDs exposed in WebSocket frames
+✅ JWT validation properly implemented
+✅ No credential leaks detected
+⚠️  Medium: Add CSP headers for WebSocket endpoints
 
-**Success Criteria**
-✅ Performance: Updates in 45ms (target: <100ms)
-✅ Scalability: Tested with 1200 connections
-❌ Monitoring: Not yet configured
-✅ Reliability: Zero message loss confirmed
+Created security report with 1 critical, 1 high priority issue
+
+Synthesizing findings into implementation tasks...
+
+**Backend Engineer Tasks Added:**
+- [ ] Critical: Implement rate limiting for WebSocket connections
+- [ ] High: Fix notification persistence on reconnection
+- [ ] Medium: Refactor complex WebSocketManager method
+- [ ] Medium: Add comprehensive error handling
+
+**Frontend Engineer Tasks Added:**
+- [ ] High: Implement offline notification queue
+- [ ] Medium: Add missing TypeScript types
+- [ ] Low: Improve read receipt UI for offline users
+
+**Infrastructure Engineer Tasks Added:**
+- [ ] Critical: Configure WAF rate limiting rules
+- [ ] High: Add CSP headers to load balancer
+- [ ] Medium: Set up monitoring for WebSocket metrics
 
 ## Summary Report
 
-**Blocking Issues (1):**
-1. Redis pub/sub must be configured for production
+**Critical Issues (2):**
+1. Rate limiting missing (Security)
+2. Notifications lost on reconnection (QA)
 
-**Non-blocking Issues (4):**
-1. Add exponential backoff to retry logic
-2. Refactor complex WebSocketManager method
-3. Add missing TypeScript types
-4. Configure monitoring for uptime tracking
+**High Priority (3):**
+1. User ID exposure in frames
+2. Offline notification persistence
+3. CSP headers needed
 
-**Recommendation**: Address blocking issue before PR. Implementation matches plan with 92% completion.
+**Total New Tasks:** 11 (Backend: 4, Frontend: 3, Infrastructure: 3)
+
+All findings have been added to respective agent task lists. Use /user-start to begin remediation.
 ```
 
 ## Notes
 
-- Uses multiple specialized agents for thorough review
-- Focuses on practical issues that matter
-- Provides actionable feedback with clear priorities
-- Integrates automated linting and testing
-- Generic enough to work with any codebase
-- Verifies completion against tasks.md execution plan
-- Ensures all acceptance criteria are satisfied
-- Validates technical decisions were followed
+- Deploys QA, Code Reviewer, and Security Engineer sub-agents
+- Each agent creates their own report in their task list
+- Findings are synthesized into tasks for implementation agents
+- Only creates tasks for active agents (from root tasks.md)
+- Prioritizes issues by severity (Critical, High, Medium, Low)
+- Review agents have read-only access (cannot modify code)
+- Creates actionable remediation tasks, not just findings
+- Integrates with distributed task management system
