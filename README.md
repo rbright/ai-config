@@ -19,6 +19,16 @@ cd ai-config
 just install
 ```
 
+**Note on Configuration Directory**: This project uses XDG-compliant paths (`~/.config/claude`). Since Claude Code reverted to using `~/.claude` as the default, you have two options:
+1. Manually copy the configuration from `claude/.config/claude/` to `$HOME/.claude/`
+2. Set `CLAUDE_CONFIG_DIR` in your shell configuration
+
+```bash
+export CLAUDE_CONFIG_DIR="$HOME/.config/claude"
+```
+
+For more details, see [Claude Code Issue #1455](https://github.com/anthropics/claude-code/issues/1455)
+
 ### Available Commands
 
 ```sh
