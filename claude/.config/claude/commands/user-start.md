@@ -1,95 +1,132 @@
 ---
-allowed-tools: Read, TodoWrite, TodoRead, Bash, Edit, MultiEdit, Write
-description: Begin executing the plan from tasks.md
+allowed-tools: Read, Task, TodoWrite, TodoRead
+description: Deploy active sub-agents to execute their tasks based on root tasks.md
 ---
 
 # user-start
 
-Begin executing the plan created in `tasks.md` with focus on implementation best practices.
+Deploy the active sub-agents identified in root `tasks.md` to begin parallel execution of their respective task lists.
 
 ## Implementation
 
-1. Load and validate the execution plan:
-   - Read `tasks.md` to understand the current plan
-   - Use TodoWrite to load tasks into tracking system
-   - Identify the first pending task to work on
-   - Verify all prerequisites are met
+1. Read root tasks.md to identify active agents:
+   - Parse the "Active Sub-Agents" section
+   - Extract list of agents involved in current work
+   - Identify task list locations for each agent
+   - Note coordination points between agents
 
-2. Follow development workflow:
-   - Consider test-first approach when appropriate
-   - Implement code following project patterns
-   - Run linters and fix issues
-   - Update documentation as needed
+2. Deploy Orchestrator first:
+   - Task: Coordinate the execution across all active agents
+   - Review current state of all task lists
+   - Identify any blocking dependencies
+   - Create execution order based on dependencies
 
-3. Continuous quality checks:
-   - Run appropriate linters after implementation
-   - Run relevant tests based on file types
-   - Check for new patterns that should be documented
+3. Deploy implementation agents in parallel:
+   For each active agent identified in tasks.md:
+   
+   - **Backend Engineer**: Work on tasks in `.claude/tasks/backend-engineer-tasks.md`
+   - **Frontend Engineer**: Work on tasks in `.claude/tasks/frontend-engineer-tasks.md`  
+   - **Infrastructure Engineer**: Work on tasks in `.claude/tasks/infra-engineer-tasks.md`
+   - **Data Engineer**: Work on tasks in `.claude/tasks/data-engineer-tasks.md`
+   - **Machine Learning Engineer**: Work on tasks in `.claude/tasks/machine-learning-engineer-tasks.md`
 
-4. Task progression workflow:
-   - Mark current task as `in_progress`
-   - Complete implementation
-   - Run all quality checks
-   - Mark task as `completed`
-   - Move to next task
+4. Execution instructions for each agent:
+   - Start with highest priority unblocked tasks
+   - Mark tasks as "in_progress" when starting
+   - Implement following project conventions (CLAUDE.md)
+   - Run appropriate quality checks (linting, tests)
+   - Mark tasks as "completed" when done
+   - Check for new tasks or dependencies
 
-5. Progress reporting:
-   - Provide clear status updates after each task
-   - Highlight any blockers or issues
-   - Show test results and linting status
-   - Summarize what was accomplished
+5. Orchestrator monitors progress:
+   - Track completion across all agents
+   - Identify when dependencies are resolved
+   - Coordinate handoffs between agents
+   - Report overall progress to user
 
-## Development Patterns
+## Agent Coordination Patterns
 
-### General Implementation
-1. Understand existing patterns in the codebase
-2. Write clean, maintainable code
-3. Add tests when creating new functionality
-4. Run linters to ensure code quality
-5. Document complex logic
+### Dependency Management
+- Infrastructure tasks often block others
+- Backend API contracts block Frontend
+- Data pipelines may block ML training
+- Orchestrator manages these dependencies
 
-### Quality Checks
-- Python: Run `ruff` and `pyright`
-- Go: Run `golangci-lint`
-- TypeScript: Run `eslint`
-- SQL: Run `sqlfluff`
-- Tests: Run `pytest` or `vitest` as appropriate
+### Parallel Execution
+- Agents work independently when possible
+- Frontend and Backend can work in parallel after API contract defined
+- Infrastructure and Data pipelines can run concurrently
+
+### Quality Gates
+Each agent maintains quality through:
+- Following CLAUDE.md conventions
+- Running domain-specific linters
+- Writing and running tests
+- Updating their task lists continuously
 
 ## Example Usage
 
 ```text
 User: /user-start
-Assistant: I'll begin executing the plan from tasks.md.
+Assistant: I'll deploy the active sub-agents identified in tasks.md to begin execution.
 
-Loading execution plan...
+Reading root tasks.md...
 
-Found plan: "Implement user authentication system"
-Total tasks: 8 (2 completed, 6 pending)
+Active Sub-Agents:
+✅ Backend Engineer - API and business logic development
+✅ Frontend Engineer - UI components and user experience  
+✅ Infrastructure Engineer - Resource provisioning
 
-Loading tasks into tracking system...
+Deploying Orchestrator to coordinate execution...
 
-Starting with next task: "Create user model with authentication fields"
+[Orchestrator]
+Reviewing task lists:
+- Backend: 8 tasks (2 completed, 6 pending)
+- Frontend: 6 tasks (1 completed, 5 pending)
+- Infrastructure: 4 tasks (3 completed, 1 pending)
 
-Implementing user model...
-[Creates user model with email, password hash, created_at fields]
+Dependencies identified:
+- Frontend waiting on Backend API contract
+- Backend waiting on Infrastructure database setup
 
-Running quality checks...
-✅ Linting passed
-✅ Tests passed
+Execution order: Infrastructure → Backend → Frontend
 
-Task completed! Moving to next task...
+Deploying active implementation agents...
 
+[Infrastructure Engineer]
+Working on: Provision RDS database instance
+Status: Terraform apply in progress...
+✅ Database provisioned successfully
+Task marked complete
+
+[Backend Engineer]
+Unblocked! Starting: Design user model schema
+✅ Schema created with auth fields
+✅ Tests written and passing
+Task marked complete
+
+[Frontend Engineer]  
+Starting: Create login form component
+✅ Component built with validation
+✅ Tests passing
+Task marked complete
+
+[Orchestrator]
 Progress Update:
-- Completed: 3 of 8 tasks
-- Current: User model created with auth fields
-- Next: Implement password hashing service
-- No blockers encountered
+- Infrastructure: 4/4 tasks complete ✅
+- Backend: 3/8 tasks complete 
+- Frontend: 2/6 tasks complete
+- Next: Backend API endpoint, then Frontend integration
+
+All agents working in parallel where possible. No blockers detected.
 ```
 
 ## Notes
 
-- Flexible approach to development (test-first when beneficial)
-- Continuously runs quality checks
-- Tracks progress using todo tools
-- Provides clear status updates
-- Works with any project structure
+- Only deploys agents listed as active in root tasks.md
+- Orchestrator manages dependencies between agents
+- Agents work in parallel when possible
+- Each agent maintains their own task list
+- Quality checks are domain-specific per agent
+- Progress tracked across all active agents
+- Works with distributed task management system
