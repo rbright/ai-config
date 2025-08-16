@@ -17,6 +17,7 @@
   },
   "forceLoginMethod": "claudeai",
   "includeCoAuthoredBy": true,
+  "outputStyle": "Concise",
   "permissions": {
     "defaultMode": "plan"
   }
