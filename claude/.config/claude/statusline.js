@@ -104,6 +104,13 @@ function getPercentageColor(percentage) {
   return colors.gray;
 }
 
+function getContextPercentageDisplay(transcriptPath) {
+  const percentage = getContextPercentage(transcriptPath);
+  const color = getPercentageColor(parseFloat(percentage));
+
+  return `${color}${percentage}%${colors.reset}`;
+}
+
 function getModelName(displayName) {
   if (displayName.includes('Opus')) return 'Opus';
   if (displayName.includes('Sonnet')) return 'Sonnet';
@@ -117,10 +124,8 @@ function getModelDisplay(input) {
   if (!displayName) return '';
 
   const modelName = getModelName(displayName);
-  const contextPercentage = getContextPercentage(input.transcript_path);
-  const contextPercentageColor = getPercentageColor(parseFloat(contextPercentage));
 
-  return ` ${colors.gray}• ${contextPercentageColor}${contextPercentage}% ${colors.gray}${modelName}${colors.reset}`;
+  return `${colors.gray}${modelName}${colors.reset}`;
 }
 
 function getBranchDisplay(input) {
@@ -133,18 +138,18 @@ function getBranchDisplay(input) {
   return `${colors.purple} ${branch}${colors.reset}`;
 }
 
-function getOutputStyle(input) {
+function getOutputStyleDisplay(input) {
   const outputStyle = input.output_style?.name;
   if (!outputStyle) return '';
 
-  return `${colors.gray} • ${outputStyle}${colors.reset}`;
+  return `${colors.gray}${outputStyle}${colors.reset}`;
 }
 
 function getSessionIdDisplay(input) {
   const sessionId = input.session_id;
   if (!sessionId) return '';
 
-  return `${colors.gray} • ${sessionId}${colors.reset}`;
+  return `${colors.gray}${sessionId}${colors.reset}`;
 }
 
 function getInput() {
@@ -157,12 +162,20 @@ function getInput() {
 
 function statusline() {
   const input = getInput();
-  const branchDisplay = getBranchDisplay(input);
-  const modelDisplay = getModelDisplay(input);
-  const outputStyleDisplay = getOutputStyle(input);
-  const sessionIdDisplay = getSessionIdDisplay(input);
 
-  return `${branchDisplay}${modelDisplay}${outputStyleDisplay}${sessionIdDisplay}`;
+  const branch = getBranchDisplay(input);
+  const contextPercentage = getContextPercentageDisplay(input.transcript_path);
+  const model = getModelDisplay(input);
+  const outputStyle = getOutputStyleDisplay(input);
+  const sessionId = getSessionIdDisplay(input);
+
+  return [
+    branch,
+    contextPercentage,
+    model,
+    outputStyle,
+    sessionId,
+  ].filter(Boolean).join(`${colors.gray} • ${colors.reset}`);
 }
 
 process.stdout.write(statusline());
