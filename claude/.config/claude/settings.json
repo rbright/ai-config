@@ -21,6 +21,9 @@
   "model": "opusplan",
   "outputStyle": "Concise",
   "permissions": {
-    "defaultMode": "plan"
+    "defaultMode": "plan",
+  "statusLine": {
+    "type": "command",
+    "command": "~/.config/claude/statusline.js"
   }
 }
