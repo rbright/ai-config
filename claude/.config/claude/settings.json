@@ -1,7 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "cleanupPeriodDays": 30,
-  "enableAllProjectMcpServers": false,
   "env": {
     "BASH_DEFAULT_TIMEOUT_MS": "120000",
     "BASH_MAX_TIMEOUT_MS": "300000",
@@ -16,12 +15,8 @@
     "MCP_TOOL_TIMEOUT": "15000",
     "USE_BUILTIN_RIPGREP": "1"
   },
-  "forceLoginMethod": "claudeai",
   "includeCoAuthoredBy": true,
-  "model": "opusplan",
-  "outputStyle": "Concise",
   "permissions": {
-    "defaultMode": "plan",
     "allow": [
       "Glob",
       "Grep",
@@ -144,10 +139,15 @@
       "Bash(sudo:*)",
       "Bash(umount:*)",
       "Bash(wget:* | sh)"
-    ]
+    ],
+    "defaultMode": "plan"
   },
+  "model": "opus",
+  "enableAllProjectMcpServers": false,
   "statusLine": {
     "type": "command",
     "command": "~/.config/claude/statusline.js"
-  }
+  },
+  "forceLoginMethod": "claudeai",
+  "outputStyle": "Concise"
 }

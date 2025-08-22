@@ -145,13 +145,6 @@ function getOutputStyleDisplay(input) {
   return `${colors.gray}${outputStyle}${colors.reset}`;
 }
 
-function getSessionIdDisplay(input) {
-  const sessionId = input.session_id;
-  if (!sessionId) return '';
-
-  return `${colors.gray}${sessionId}${colors.reset}`;
-}
-
 function getInput() {
   try {
     return JSON.parse(fs.readFileSync(0, "utf8"));
@@ -167,14 +160,12 @@ function statusline() {
   const contextPercentage = getContextPercentageDisplay(input.transcript_path);
   const model = getModelDisplay(input);
   const outputStyle = getOutputStyleDisplay(input);
-  const sessionId = getSessionIdDisplay(input);
 
   return [
     branch,
     contextPercentage,
     model,
-    outputStyle,
-    sessionId,
+    outputStyle
   ].filter(Boolean).join(`${colors.gray} • ${colors.reset}`);
 }
 
