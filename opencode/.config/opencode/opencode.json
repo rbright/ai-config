@@ -1,0 +1,57 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+
+  "autoupdate": true,
+  "instructions": ["AGENTS.md", "CLAUDE.md", ".ai/instructions/*.md"],
+  "share": "disabled",
+  "theme": "system",
+
+  "model": "anthropic/claude-opus-4-1-20250805",
+  "small_model": "anthropic/claude-3-5-haiku-20241022",
+
+  "agent": {
+    "build": {
+      "temperature": 0.3
+    },
+    "plan": {
+      "temperature": 0.1
+    }
+  },
+
+  "mcp": {
+    "linear-ig": {
+      "type": "remote",
+      "url": "https://mcp.linear.app/sse",
+      "enabled": true
+    },
+    "linear-moonrise": {
+      "type": "remote",
+      "url": "https://mcp.linear.app/sse",
+      "enabled": true
+    },
+    "sentry-moonrise": {
+      "type": "remote",
+      "url": "https://mcp.sentry.dev/mcp",
+      "enabled": true
+    }
+  },
+
+  "provider": {
+    "anthropic": {
+      "models": {}
+    },
+
+    "openai": {
+      "models": {
+        "gpt-5": {
+          "options": {
+            "include": ["reasoning.encrypted_content"],
+            "reasoningEffort": "high",
+            "reasoningSummary": "concise",
+            "textVerbosity": "low"
+          }
+        }
+      }
+    }
+  }
+}
