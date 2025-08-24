@@ -5,7 +5,7 @@ description: Refactor README and documentation into organized structure
 
 # user-docs-refactor
 
-Transform README.md into a table of contents and organize all documentation into a structured `docs/` directory.
+Restructure README.md into a clear table of contents and consolidate documentation per repo conventions (avoid a separate `docs/` directory). Focus on self-documenting commands and updating core files.
 
 ## Implementation
 
@@ -28,16 +28,15 @@ Transform README.md into a table of contents and organize all documentation into
      - **Navigation Agent**: Assess current discoverability
 
 4. **Planning Phase**:
-   - Design optimal `docs/` directory structure
-   - Plan README.md as navigation hub
-   - Create logical flow for readers
+   - Design an optimal README table of contents and section flow
+   - Decide what content belongs in README vs. `CLAUDE.md` vs. command files
+   - Create logical navigation using anchors and concise cross-links
 
 5. **Refactoring Phase**:
    - Mark refactoring tasks as in_progress
-   - Create `docs/` directory structure
-   - Move documentation to appropriate files
-   - Transform README.md into table of contents
-   - Add navigation links between documents
+   - Transform README.md into a clear table of contents with anchors
+   - Consolidate scattered docs into README and `CLAUDE.md` where appropriate
+   - Link to command files in `claude/.config/claude/commands/` for self-documentation
    - Update task status as completed
 
 6. **Enhancement Phase**:
@@ -47,44 +46,25 @@ Transform README.md into a table of contents and organize all documentation into
    - Create index for quick reference
    - Complete all remaining tasks
 
-## Optimal Documentation Structure
+## Optimal Documentation Structure (Repo-Conformant)
 
 ```text
 README.md (Table of Contents)
 ├── Project Overview
 ├── Quick Start
-├── Documentation Index
-└── Links to all docs
+├── Key Commands (links to `claude/.config/claude/commands/*`)
+├── Architecture Overview (brief; deeper details in code/diagrams)
+├── Development Workflow (link to CLAUDE.md)
+└── Troubleshooting & FAQs
 
-docs/
-├── getting-started/
-│   ├── installation.md
-│   ├── quick-start.md
-│   └── first-steps.md
-├──  architecture/
-│   ├── overview.md
-│   ├── design-decisions.md
-│   └── system-components.md
-├── development/
-│   ├── setup.md
-│   ├── coding-standards.md
-│   └── workflow.md
-├── api/
-│   ├── overview.md
-│   ├── endpoints.md
-│   └── examples.md
-├── deployment/
-│   ├── environments.md
-│   ├── configuration.md
-│   └── monitoring.md
-├── contributing/
-│   ├── guidelines.md
-│   ├── pull-requests.md
-│   └── code-review.md
-└── reference/
-    ├── commands.md
-    ├── configuration.md
-    └── troubleshooting.md
+CLAUDE.md
+├── Agent and command development guidance
+├── Repository conventions and standards
+└── Multi-agent coordination patterns
+
+tasks.md
+├── Active initiatives and audits
+└── Checklists and acceptance criteria
 ```
 
 ## Example Usage
@@ -117,6 +97,32 @@ Deploying analysis agents...
 - Missing: Architecture decisions, troubleshooting
 - Incomplete: API examples, deployment guide
 - Well covered: Setup, development workflow
+
+## Boundaries & Scope
+- Do not create a `docs/` directory; follow repo convention to centralize in README and command files
+- Do not change code or business logic; documentation only
+- Keep changes limited to README, CLAUDE.md, tasks.md, and command self-docs
+
+## Repo Conventions
+- Follow guidance in `CLAUDE.md` for documentation standards
+- Keep core documentation in `README.md`; avoid deep documentation hierarchies
+- Ensure command files are self-documenting with clear usage
+
+## Task List References
+- Use `TodoWrite` to add/refine tasks in `tasks.md` for documentation work
+- Record completion and any follow-ups in the appropriate audit sections
+
+## Templates/Reports
+```markdown
+### Docs Refactor Summary
+- Scope:
+- Files updated:
+- Major changes:
+- Open questions:
+- Follow-up tasks:
+```
+
+---
 
 [Navigation Agent]
 - Current README too long to navigate

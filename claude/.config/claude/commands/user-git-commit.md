@@ -154,3 +154,24 @@ fix(api,db): resolve data consistency issue
 - Follows Conventional Commits strictly
 - Helps with PR reviews by organizing changes
 - Can handle complex multi-feature branches
+
+## Boundaries & Scope
+- Local commit creation only; do not push or rewrite published history
+- No destructive operations (`reset --hard`, `rebase -i`) unless explicitly requested
+- Do not mix large refactors with feature/fix changes in the same commit
+
+## Repo Conventions
+- Follow `CLAUDE.md` for commit style and repository standards
+- Use Conventional Commits types consistently; include scope when helpful
+- Keep commit bodies concise; include rationale and tests/docs notes when needed
+
+## Templates/Reports
+```text
+<type>(<scope>): <summary>
+
+Why: <optional rationale>
+Notes: <tests/docs updated>
+Tasks: <optional task references>
+```
+
+---

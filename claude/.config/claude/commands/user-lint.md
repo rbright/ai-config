@@ -142,3 +142,28 @@ Please fix the issues before committing.
 - Type checking provides additional safety beyond linting
 - Provides specific error messages and locations
 - No configuration files are assumed - uses default settings
+
+## Boundaries & Scope
+- Linting and type checks only; do not modify files
+- Do not attempt auto-fix unless explicitly requested
+- Report results and recommended next steps
+
+## Repo Conventions
+- Follow `CLAUDE.md` for language tool standards (ruff/pyright, eslint/tsc, sqlfluff)
+- Respect project-specific config files when present
+
+## Task List References
+- If issues found, create remediation tasks via `TodoWrite` in the appropriate engineer task lists
+- Record a summary status in `tasks.md` under the relevant audit or initiative
+
+## Templates/Reports
+```markdown
+### Lint Report
+- Files checked:
+- Tools run:
+- Errors:
+- Warnings:
+- Next steps:
+```
+
+---

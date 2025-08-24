@@ -27,14 +27,14 @@ Analyze a problem statement to create comprehensive requirements documentation a
 
 3. Analyze requirements to identify needed sub-agents:
    Based on the requirements.md created by Orchestrator, determine which agents are needed:
-   
+
    - **Backend Engineer**: If API development, business logic, or data models are required
    - **Frontend Engineer**: If UI components, user interfaces, or client-side logic are needed
    - **Machine Learning Engineer**: If ML models, training pipelines, or AI features are required
 
 4. Deploy ONLY relevant implementation sub-agents in parallel:
    For each identified domain, deploy the corresponding agent to create their execution plan:
-   
+
    - Each agent creates tasks in their respective `.claude/tasks/[agent-name]-tasks.md`
    - Agents analyze only their domain-specific requirements
    - Cross-team dependencies are identified and documented
@@ -43,17 +43,17 @@ Analyze a problem statement to create comprehensive requirements documentation a
    Document which agents are involved in this work:
    ```markdown
    # Project: [Project Name]
-   
+
    ## Active Sub-Agents
    - [ ] Backend Engineer - APIs, data/ETL, and infrastructure (Terraform)
    - [ ] Frontend Engineer - UI components and user experience
    - [ ] ML Engineer - Model development and inference
-   
+
    ## Task Lists
    - Backend: `.claude/tasks/backend-engineer-tasks.md`
    - Frontend: `.claude/tasks/frontend-engineer-tasks.md`
    - ML: `.claude/tasks/ml-engineer-tasks.md`
-   
+
    ## Coordination Points
    - Backend ↔ Frontend: API contract definition
    - Backend (Infra) → All: Resource provisioning must complete before integration
@@ -93,7 +93,7 @@ Analyze a problem statement to create comprehensive requirements documentation a
 - Plans data model and business logic implementation
 - Identifies integration points with other services
 
-### Frontend Engineer  
+### Frontend Engineer
 - Reviews UI/UX requirements from Product Manager
 - Plans component architecture and state management
 - Creates tasks for API integration and user flows
@@ -311,3 +311,26 @@ Ready to proceed? Use /user-start to begin execution with the active agents.
 - Orchestrator coordinates only between active agents
 - Always requests user approval before proceeding
 - Integrates with issue tracking tools via MCP when applicable
+
+## Boundaries & Scope
+- Planning and requirements only; do not implement code changes
+- Delegate implementation to domain agents per requirements
+- Keep scope focused on current problem statement
+
+## Repo Conventions
+- Follow `CLAUDE.md` for requirements structure and terminology
+- Use acceptance criteria that are measurable and testable
+
+## Task List References
+- Use `TodoWrite` to create/organize plan tasks in `tasks.md`
+- Record agent assignments and decision points
+
+## Templates/Reports
+```markdown
+### Planning Summary
+- Feature:
+- Assumptions:
+- Risks:
+- Agents:
+- Next steps:
+```

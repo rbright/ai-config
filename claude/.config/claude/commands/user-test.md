@@ -79,6 +79,31 @@ Coverage Report:
 
 ## Notes
 
+## Boundaries & Scope
+- Run tests only; do not modify code or test data
+- Avoid flaky-test auto-retries unless configured
+- Report failures with minimal, actionable context
+
+## Repo Conventions
+- Follow `CLAUDE.md` for language-appropriate test tooling (vitest, pytest, go test)
+- Respect project-specific test scripts in package/config files
+
+## Task List References
+- Use `TodoWrite` to create tasks for failing tests or missing coverage
+- Record a summary status in `tasks.md` under the current initiative
+
+## Templates/Reports
+```markdown
+### Test Report
+- Suites run:
+- Pass/Fail:
+- Failures:
+- Coverage (if available):
+- Next steps:
+```
+
+---
+
 - Intelligently determines test scope based on modified files
 - Runs focused tests when possible for faster feedback
 - Supports Python (pytest), Go (go test), and TypeScript (vitest)

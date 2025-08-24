@@ -19,12 +19,8 @@ Commands are stored in `claude/.config/claude/commands/` and follow this structu
 
 ```markdown
 ---
-allowed-tools:
-  - Read
-  - Grep
-  - Agent
-  - TodoWrite
-description: "Brief description of command purpose"
+allowed-tools: Agent, Grep, Read, TodoWrite
+description: Brief description of command purpose
 ---
 
 # Command Name
@@ -49,19 +45,19 @@ Assistant: [Expected behavior and output]
 
 ### Tool Restriction Guidelines
 
-Each command should specify minimal necessary tools in YAML frontmatter:
+Each command should specify minimal necessary tools in YAML frontmatter (single `allowed-tools:` line, comma‑separated):
 
 **Planning Commands** (research/analysis):
-- `Read`, `Glob`, `Grep`, `Agent`, `TodoWrite`, `WebFetch`
+- `Agent`, `Glob`, `Grep`, `Read`, `TodoWrite`, `WebFetch`
 
 **Development Commands** (implementation):
-- `Read`, `TodoWrite`, `TodoRead`, `Bash`, `Edit`, `MultiEdit`, `Write`
+- `Bash`, `Edit`, `MultiEdit`, `Read`, `TodoRead`, `TodoWrite`, `Write`
 
 **Quality Commands** (linting/testing):
-- `Bash`, `LS`, `Grep`, `Read`
+- `Bash`, `Grep`, `LS`, `Read`
 
 **Git Commands** (version control):
-- `Bash`, `Read`, `Grep`, `Agent`, `WebFetch`
+- `Agent`, `Bash`, `Grep`, `Read`, `WebFetch`
 
 ### Multi-Agent Patterns
 
@@ -162,7 +158,6 @@ Tool access is controlled at multiple levels:
 ## Development Guidelines
 
 ### Documentation Standards
-- **Avoid docs/ directory**: This repository should not contain extensive documentation hierarchies
 - **Focus on README.md**: Keep core documentation in the main README
 - **Command Self-Documentation**: Commands should be self-documenting with clear examples
 - **CLAUDE.md**: Use this file for development guidance and command creation instructions
@@ -211,11 +206,7 @@ Tool access is controlled at multiple levels:
 
 ```markdown
 ---
-allowed-tools:
-  - Read
-  - Grep
-  - Agent
-  - TodoWrite
+tools: Read, Grep, Agent, TodoWrite
 description: "Template for new command creation"
 ---
 

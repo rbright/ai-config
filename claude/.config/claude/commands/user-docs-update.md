@@ -16,7 +16,7 @@ Keep documentation current with the latest project structure, business logic, co
    - Track progress through completion
 
 2. **Analyze project structure**:
-   - Check for build tool configurations (`package.json`, `Makefile`, etc.)
+   - Check for build tool configurations (`package.json`, `justfile`, etc.)
    - Extract available commands and scripts
    - Map component architecture
    - Identify service boundaries
@@ -118,6 +118,32 @@ Found:
 [Business Logic Agent]
 Identified business flows:
 - User registration with email verification
+
+## Boundaries & Scope
+- Documentation updates only; do not change code or APIs
+- Prefer updating README and command files; avoid creating new docs trees
+- Diagrams must reflect actual implementation (no speculative designs)
+
+## Repo Conventions
+- Follow `CLAUDE.md` for documentation structure and tone
+- Keep core documentation in `README.md` with concise linking
+- Ensure commands remain self-documenting with clear usage
+
+## Task List References
+- Use `TodoWrite` to track documentation update tasks in `tasks.md`
+- Add follow-ups for any discovered gaps or inconsistencies
+
+## Templates/Reports
+```markdown
+### Docs Update Summary
+- Components updated:
+- Diagrams updated:
+- Business rules adjusted:
+- Code references validated:
+- Remaining gaps:
+```
+
+---
 - Order processing with inventory check
 - Payment processing with retry logic
 

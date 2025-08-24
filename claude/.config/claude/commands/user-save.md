@@ -38,6 +38,26 @@ Deploy all active sub-agents to update their respective task lists with current 
    - Mark resolved issues as complete
    - Add new issues discovered
 
+## Boundaries & Scope
+- Synchronize task lists only; do not modify code or infrastructure
+- Do not invent progress; reflect actual changes from diffs/context
+
+## Repo Conventions
+- Follow `CLAUDE.md` for task update etiquette and status terminology
+- Keep updates concise and actionable
+
+## Task List References
+- Update `.claude/tasks/[agent]-tasks.md` and root `tasks.md` with current status
+
+## Templates/Reports
+```markdown
+### Save Session Summary
+- Agents updated:
+- Task changes:
+- New blockers:
+- Follow-ups:
+```
+
 4. **Create session summary**:
    After all agents update their lists, create a summary in root tasks.md:
    ```markdown

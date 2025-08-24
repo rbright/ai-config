@@ -166,17 +166,17 @@ graph TB
 
 ## ⚙️ Configuration
 
-### Command Tool Restrictions
-Each command is optimized with minimal necessary tools:
+### Command Tools
+Each command defines minimal tools in frontmatter using a single `tools:` line (comma‑separated):
 
-| Command | Purpose | Allowed Tools | Active Agents |
-|---------|---------|---------------|---------------|
-| user-plan | Requirements & planning | Read, Glob, Grep, Task, TodoWrite, WebFetch | Orchestrator (requirements), Relevant Implementation Agents |
-| user-start | Task execution | Read, Task, TodoWrite, TodoRead | Only agents listed in root tasks.md |
-| user-lint | Code quality | Bash, LS, Grep | Direct execution (no agents) |
-| user-test | Testing | Bash, LS, Grep, Read | Direct execution (no agents) |
-| user-review | Code review | Read, Glob, Grep, Task, Bash, TodoRead, TodoWrite | Reviewer |
-| user-save | Progress tracking | Read, Task, TodoRead, Write | All active agents from tasks.md |
+| Command | Purpose | Tools | Active Agents |
+|---------|---------|-------|---------------|
+| user-plan | Requirements & planning | Agent, Glob, Grep, Read, TodoWrite, WebFetch | Orchestrator (requirements), relevant agents |
+| user-start | Task execution | Agent, Read, TodoRead, TodoWrite | Only agents listed in root tasks.md |
+| user-lint | Code quality | Bash, Grep, LS, Read | Direct execution (no agents) |
+| user-test | Testing | Bash, Grep, LS, Read | Direct execution (no agents) |
+| user-review | Code review | Agent, Bash, Grep, LS, Read, TodoRead, TodoWrite | Reviewer |
+| user-save | Progress tracking | Agent, Read, TodoRead, TodoWrite | All active agents from tasks.md |
 
 ## 🏗️ Architecture
 
@@ -184,21 +184,21 @@ Each command is optimized with minimal necessary tools:
 ```text
 ai-config/
 ├── justfile                    # Build automation
-├── tasks.md                    # Root task registry (active agents)
+├── tasks.md                    # Root task registry (audits, summaries)
 ├── .stowrc                     # Stow configuration
 ├── .editorconfig              # Editor standards
 ├── .vscode/settings.json      # VS Code configuration
-└── claude/                    # Claude Code configuration
-    ├── tasks/                 # Distributed task lists
-    │   ├── backend-engineer-tasks.md
-    │   ├── frontend-engineer-tasks.md
-    │   ├── ml-engineer-tasks.md
-    │   ├── orchestrator-tasks.md
-    │   └── reviewer-tasks.md
-    └── .config/claude/
-        ├── settings.json      # Global settings
-        ├── commands/          # Command definitions
-        └── agents/            # Sub-agent definitions
+├── .claude/                   # Project-scoped runtime state
+│   └── tasks/                 # Distributed task lists per agent
+│       ├── backend-engineer-tasks.md
+│       ├── frontend-engineer-tasks.md
+│       ├── ml-engineer-tasks.md
+│       ├── orchestrator-tasks.md
+│       └── reviewer-tasks.md
+└── claude/.config/claude/     # Claude Code configuration
+    ├── settings.json
+    ├── commands/              # Command definitions
+    └── agents/                # Sub-agent definitions
 ```
 
 ### Multi-Agent Coordination

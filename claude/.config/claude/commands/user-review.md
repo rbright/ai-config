@@ -196,6 +196,32 @@ All findings have been added to respective agent task lists. Use /user-start to 
 
 ## Notes
 
+## Boundaries & Scope
+- Read-only analysis; do not modify code or infrastructure
+- Focus on QA, code quality, and security; avoid scope creep
+
+## Repo Conventions
+- Follow `CLAUDE.md` for review standards and severity levels
+- Keep findings concise, evidence-based, and non-duplicative
+
+## Task List References
+- Write consolidated findings to `.claude/tasks/reviewer-tasks.md`
+- Create remediation tasks in each implementation agent’s task list
+
+## Templates/Reports
+```markdown
+### Review Summary
+- Scope assessed:
+- Critical/High issues:
+- Medium/Low issues:
+- Evidence links:
+
+### Remediation Plan
+- Backend:
+- Frontend:
+- ML:
+```
+
 - Deploys consolidated Reviewer agent
 - Reviewer creates a single report in `.claude/tasks/reviewer-tasks.md`
 - Findings are synthesized into tasks for implementation agents

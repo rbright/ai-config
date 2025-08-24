@@ -135,6 +135,26 @@ Ready to proceed with refactoring? This will:
 
 ## Notes
 
+## Boundaries & Scope
+- Do not alter the intent of documented rules; refactor structure only
+- Keep content in `CLAUDE.md` and related instruction files; avoid new doc trees
+
+## Repo Conventions
+- Follow `CLAUDE.md` for structure and style standards
+- Minimize duplication; prefer cross-references over repetition
+
+## Task List References
+- Use `TodoWrite` to track refactor subtasks and open questions in `tasks.md`
+
+## Templates/Reports
+```markdown
+### Rules Refactor Summary
+- Files touched:
+- Sections reorganized:
+- Duplicates removed:
+- Follow-ups:
+```
+
 - Works with either CLAUDE.md or AGENTS.md as main file
 - Preserves all existing rules while improving organization
 - Creates backup of original structure

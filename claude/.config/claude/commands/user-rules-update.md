@@ -147,6 +147,26 @@ project/
 
 ## Notes
 
+## Boundaries & Scope
+- Documentation updates only; do not modify code behavior
+- Add patterns to `CLAUDE.md` or relevant instruction files
+
+## Repo Conventions
+- Follow `CLAUDE.md` for format, tone, and organization
+- Avoid duplication; reference existing sections when possible
+
+## Task List References
+- Use `TodoWrite` to add tasks in `tasks.md` for follow-up examples or validations
+
+## Templates/Reports
+```markdown
+### Rules Update Summary
+- New patterns:
+- Affected areas:
+- Examples added:
+- Cross-references:
+```
+
 - Places patterns in the most relevant directory's CLAUDE.md
 - Creates CLAUDE.md files as needed in appropriate directories
 - Avoids cluttering root with component-specific patterns

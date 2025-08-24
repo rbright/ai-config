@@ -23,7 +23,7 @@ Deploy the active sub-agents identified in root `tasks.md` to begin parallel exe
 
 3. Deploy implementation agents in parallel:
    For each active agent identified in tasks.md:
-   
+
    - **Backend Engineer**: Work on tasks in `.claude/tasks/backend-engineer-tasks.md`
    - **Frontend Engineer**: Work on tasks in `.claude/tasks/frontend-engineer-tasks.md`
    - **Machine Learning Engineer**: Work on tasks in `.claude/tasks/ml-engineer-tasks.md`
@@ -38,6 +38,27 @@ Deploy the active sub-agents identified in root `tasks.md` to begin parallel exe
 
 5. Orchestrator monitors progress:
    - Track completion across all agents
+
+## Boundaries & Scope
+- Kick off agents and coordinate only; do not modify code directly
+- Respect agent-specific scopes and permissions
+
+## Repo Conventions
+- Follow `CLAUDE.md` for multi-agent execution and coordination
+- Ensure updates flow into each agent’s task list under `.claude/tasks/`
+
+## Task List References
+- Use `TodoWrite` to set statuses across agent task files
+- Record coordination outcomes in root `tasks.md`
+
+## Templates/Reports
+```markdown
+### Start Session Summary
+- Active agents:
+- Initial tasks:
+- Dependencies:
+- Risks/blockers:
+```
    - Identify when dependencies are resolved
    - Coordinate handoffs between agents
    - Report overall progress to user
@@ -101,7 +122,7 @@ Unblocked! Starting: Design user model schema
 ✅ Tests written and passing
 Task marked complete
 
-[Frontend Engineer]  
+[Frontend Engineer]
 Starting: Create login form component
 ✅ Component built with validation
 ✅ Tests passing
@@ -110,7 +131,7 @@ Task marked complete
 [Orchestrator]
 Progress Update:
 - Backend (Infra): 4/4 infra tasks complete ✅
-- Backend: 3/8 service tasks complete 
+- Backend: 3/8 service tasks complete
 - Frontend: 2/6 tasks complete
 - Next: Backend API endpoint, then Frontend integration
 

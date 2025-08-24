@@ -104,6 +104,37 @@ Co-Authored-By: Claude <noreply@anthropic.com>
 
 ## Notes
 
+## Boundaries & Scope
+- Create PRs only; do not force-push or rewrite branch history
+- Do not auto-merge; collect feedback first
+- Keep PRs focused with clear description and checklist
+
+## Repo Conventions
+- Follow `CLAUDE.md` for PR style and review expectations
+- Use Conventional Commits in PR title; summarize scope and impact
+- Link related issues and tasks
+
+## Task List References
+- Reference relevant items from `tasks.md` in the PR description
+- Use `TodoWrite` to add follow-up tasks from review feedback
+
+## Templates/Reports
+```markdown
+### PR Summary
+- Scope:
+- Changes:
+- Tests/Lint:
+- Risks:
+- Rollback:
+
+### Checklist
+- [ ] Lint passes
+- [ ] Tests added/updated
+- [ ] Docs updated (README/CLAUDE.md)
+```
+
+---
+
 - Automatically determines the appropriate conventional commit type
 - Generates descriptive PR titles following standards
 - Creates comprehensive PR bodies with all required sections
