@@ -27,13 +27,13 @@ Deploy all active sub-agents to update their respective task lists with current 
 
 3. **Agent-specific updates**:
 
-   **Implementation Agents** (Backend, Frontend, Infrastructure, Data, ML):
+   **Implementation Agents** (Backend, Frontend, ML):
    - Update completion percentage on current tasks
    - Document technical decisions made
    - Add new tasks for discovered edge cases
    - Note integration points with other agents
 
-   **Review Agents** (QA, Code Reviewer, Security):
+   **Review Agent** (Reviewer):
    - Update findings from latest reviews
    - Mark resolved issues as complete
    - Add new issues discovered
@@ -74,7 +74,6 @@ Reading root tasks.md...
 Active Agents:
 - Backend Engineer
 - Frontend Engineer
-- Infrastructure Engineer
 
 Deploying agents to update their task lists...
 
@@ -94,12 +93,11 @@ Updating .claude/tasks/frontend-engineer-tasks.md...
 📝 Added new task: Implement remember me checkbox
 Note: Need API contract for profile endpoints
 
-[Infrastructure Engineer]
-Updating .claude/tasks/infra-engineer-tasks.md...
-✅ Marked complete: Redis cluster for sessions
-✅ Marked complete: Email service configuration
-⚙️  Updated progress: Rate limiting setup (90% complete)
-Technical decision: Using AWS SES for email delivery
+[Reviewer]
+Updating .claude/tasks/reviewer-tasks.md...
+✅ Marked resolved: Medium – Missing TypeScript types
+⚙️  Updated status: Critical – Implement rate limiting (in progress)
+📝 Added new finding: Low – Add monitoring dashboard for auth endpoints
 
 Creating session summary in root tasks.md...
 
@@ -108,12 +106,12 @@ Creating session summary in root tasks.md...
 ### Progress Summary
 - Backend: 5/9 tasks complete (56% progress)
 - Frontend: 3/8 tasks complete (38% progress)
-- Infrastructure: 6/7 tasks complete (86% progress)
+- Reviewer: 2/5 findings resolved
 
 ### Key Accomplishments
 - Backend: JWT auth and login endpoint working
 - Frontend: Login UI complete with validation
-- Infrastructure: Redis and email service ready
+- Reviewer: Rate limiting remediation planned and tracked
 
 ### Blockers
 - Backend: Needs email templates for password reset

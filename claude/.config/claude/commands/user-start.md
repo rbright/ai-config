@@ -25,10 +25,8 @@ Deploy the active sub-agents identified in root `tasks.md` to begin parallel exe
    For each active agent identified in tasks.md:
    
    - **Backend Engineer**: Work on tasks in `.claude/tasks/backend-engineer-tasks.md`
-   - **Frontend Engineer**: Work on tasks in `.claude/tasks/frontend-engineer-tasks.md`  
-   - **Infrastructure Engineer**: Work on tasks in `.claude/tasks/infra-engineer-tasks.md`
-   - **Data Engineer**: Work on tasks in `.claude/tasks/data-engineer-tasks.md`
-   - **Machine Learning Engineer**: Work on tasks in `.claude/tasks/machine-learning-engineer-tasks.md`
+   - **Frontend Engineer**: Work on tasks in `.claude/tasks/frontend-engineer-tasks.md`
+   - **Machine Learning Engineer**: Work on tasks in `.claude/tasks/ml-engineer-tasks.md`
 
 4. Execution instructions for each agent:
    - Start with highest priority unblocked tasks
@@ -47,9 +45,9 @@ Deploy the active sub-agents identified in root `tasks.md` to begin parallel exe
 ## Agent Coordination Patterns
 
 ### Dependency Management
-- Infrastructure tasks often block others
+- Backend (Infra) tasks often block others
 - Backend API contracts block Frontend
-- Data pipelines may block ML training
+- Data pipelines (Backend) may block ML training
 - Orchestrator manages these dependencies
 
 ### Parallel Execution
@@ -73,9 +71,8 @@ Assistant: I'll deploy the active sub-agents identified in tasks.md to begin exe
 Reading root tasks.md...
 
 Active Sub-Agents:
-✅ Backend Engineer - API and business logic development
-✅ Frontend Engineer - UI components and user experience  
-✅ Infrastructure Engineer - Resource provisioning
+✅ Backend Engineer - APIs, data/ETL, and infrastructure
+✅ Frontend Engineer - UI components and user experience
 
 Deploying Orchestrator to coordinate execution...
 
@@ -83,18 +80,17 @@ Deploying Orchestrator to coordinate execution...
 Reviewing task lists:
 - Backend: 8 tasks (2 completed, 6 pending)
 - Frontend: 6 tasks (1 completed, 5 pending)
-- Infrastructure: 4 tasks (3 completed, 1 pending)
 
 Dependencies identified:
 - Frontend waiting on Backend API contract
-- Backend waiting on Infrastructure database setup
+- Backend (Infra) must provision database
 
-Execution order: Infrastructure → Backend → Frontend
+Execution order: Backend (Infra) → Backend → Frontend
 
 Deploying active implementation agents...
 
-[Infrastructure Engineer]
-Working on: Provision RDS database instance
+[Backend Engineer]
+Working on: Provision RDS database instance (Terraform)
 Status: Terraform apply in progress...
 ✅ Database provisioned successfully
 Task marked complete
@@ -113,8 +109,8 @@ Task marked complete
 
 [Orchestrator]
 Progress Update:
-- Infrastructure: 4/4 tasks complete ✅
-- Backend: 3/8 tasks complete 
+- Backend (Infra): 4/4 infra tasks complete ✅
+- Backend: 3/8 service tasks complete 
 - Frontend: 2/6 tasks complete
 - Next: Backend API endpoint, then Frontend integration
 

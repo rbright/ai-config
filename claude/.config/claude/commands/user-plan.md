@@ -15,23 +15,21 @@ Analyze a problem statement to create comprehensive requirements documentation a
    - Extract any technical constraints mentioned
    - Determine the initial scope of work
 
-2. Deploy Product Manager sub-agent:
+2. Deploy Orchestrator sub-agent (requirements owner):
    - **Task**: Analyze the problem and create comprehensive `requirements.md`
    - **Input**: Problem statement, issue tracker details, user context
    - **Output**: Structured requirements document with:
      - Functional requirements
      - Non-functional requirements
-     - Technical breakdown by domain (Backend, Frontend, Infrastructure, ML)
+     - Technical breakdown by domain (Backend, Frontend, ML)
      - Acceptance criteria
      - Out of scope items
 
 3. Analyze requirements to identify needed sub-agents:
-   Based on the requirements.md created by Product Manager, determine which agents are needed:
+   Based on the requirements.md created by Orchestrator, determine which agents are needed:
    
    - **Backend Engineer**: If API development, business logic, or data models are required
    - **Frontend Engineer**: If UI components, user interfaces, or client-side logic are needed
-   - **Infrastructure Engineer**: If new resources, deployment changes, or scaling is required
-   - **Data Engineer**: If ETL pipelines, data transformations, or warehouse integration is needed
    - **Machine Learning Engineer**: If ML models, training pipelines, or AI features are required
 
 4. Deploy ONLY relevant implementation sub-agents in parallel:
@@ -47,18 +45,18 @@ Analyze a problem statement to create comprehensive requirements documentation a
    # Project: [Project Name]
    
    ## Active Sub-Agents
-   - [ ] Backend Engineer - API and business logic development
+   - [ ] Backend Engineer - APIs, data/ETL, and infrastructure (Terraform)
    - [ ] Frontend Engineer - UI components and user experience
-   - [ ] Infrastructure Engineer - Resource provisioning
+   - [ ] ML Engineer - Model development and inference
    
    ## Task Lists
    - Backend: `.claude/tasks/backend-engineer-tasks.md`
    - Frontend: `.claude/tasks/frontend-engineer-tasks.md`
-   - Infrastructure: `.claude/tasks/infra-engineer-tasks.md`
+   - ML: `.claude/tasks/ml-engineer-tasks.md`
    
    ## Coordination Points
    - Backend ↔ Frontend: API contract definition
-   - Infrastructure → All: Resource provisioning must complete first
+   - Backend (Infra) → All: Resource provisioning must complete before integration
    ```
 
 6. Deploy Orchestrator sub-agent:
@@ -220,44 +218,7 @@ Created by Frontend Engineer sub-agent:
 - [x] Setup: Configure React project (completed: 2024-01-15)
 ```
 
-### 4. Infrastructure Tasks (`.claude/tasks/infra-engineer-tasks.md`)
-Created by Infrastructure Engineer sub-agent:
-
-```markdown
-# Infrastructure Engineer Tasks
-
-## In Progress
-- [ ] Terraform: Creating WebSocket infrastructure module
-
-## To Do
-- [ ] Provision: Set up WebSocket load balancer
-- [ ] Scale: Configure auto-scaling policies
-- [ ] Monitor: Set up CloudWatch alerts
-- [ ] Security: Configure WAF rules
-
-## Completed
-- [x] VPC: Created network infrastructure (completed: 2024-01-15)
-```
-
-### 5. Data Tasks (`.claude/tasks/data-engineer-tasks.md`)
-Created by Data Engineer sub-agent (if applicable):
-
-```markdown
-# Data Engineer Tasks
-
-## In Progress
-- [ ] Pipeline: Building notification analytics pipeline
-
-## To Do
-- [ ] Extract: Pull notification events from queue
-- [ ] Transform: Aggregate notification metrics
-- [ ] Load: Store in analytics warehouse
-
-## Completed
-- [x] Schema: Designed analytics tables (completed: 2024-01-15)
-```
-
-### 6. ML Tasks (`.claude/tasks/machine-learning-engineer-tasks.md`)
+### 4. ML Tasks (`.claude/tasks/ml-engineer-tasks.md`)
 Created by ML Engineer sub-agent (if applicable):
 
 ```markdown
@@ -273,7 +234,6 @@ Created by ML Engineer sub-agent (if applicable):
 - [ ] Deploy: Prepare model for inference
 
 ## Completed
-- [x] Research: Analyzed ML opportunities (completed: 2024-01-15)
 ```
 
 ## Example Usage
@@ -282,27 +242,24 @@ Created by ML Engineer sub-agent (if applicable):
 User: /user-plan Implement real-time notifications for workflow status changes
 Assistant: I'll analyze the requirements and deploy specialized sub-agents to create execution plans.
 
-Deploying Product Manager to analyze requirements...
+Deploying Orchestrator to analyze requirements...
 
-[Product Manager]
+[Orchestrator]
 Created requirements.md with:
 - Functional requirements for real-time notifications
 - Performance requirement: <100ms latency
 - Technical breakdown identifying need for:
   - Backend: WebSocket API implementation
   - Frontend: Real-time UI components
-  - Infrastructure: WebSocket load balancing
-  - Data: Notification analytics pipeline (optional)
+  - Backend (Infra): WebSocket load balancing
   - ML: Not required for this feature
 
 Identifying required sub-agents based on requirements...
 ✅ Backend Engineer - Required for WebSocket API
 ✅ Frontend Engineer - Required for notification UI
-✅ Infrastructure Engineer - Required for WebSocket infrastructure
-✅ Data Engineer - Optional for analytics
 ❌ Machine Learning Engineer - Not needed
 
-Deploying 3 required implementation sub-agents...
+Deploying required implementation sub-agents...
 
 [Backend Engineer]
 Created execution plan in .claude/tasks/backend-engineer-tasks.md:
@@ -318,21 +275,20 @@ Created execution plan in .claude/tasks/frontend-engineer-tasks.md:
 - Create notification panel UI
 - Add real-time state management
 
-[Infrastructure Engineer]
-Created execution plan in .claude/tasks/infra-engineer-tasks.md:
+Backend (Infra) plan added to .claude/tasks/backend-engineer-tasks.md:
 - Provision WebSocket load balancer
 - Configure auto-scaling for WebSocket servers
 - Set up monitoring for connection metrics
 - Implement failover strategy
 
 Created root tasks.md with:
-- Active agents: Backend, Frontend, Infrastructure
+- Active agents: Backend, Frontend
 - Task list locations for each agent
 - Key coordination points identified
 
 [Orchestrator]
 Coordination timeline:
-1. Infrastructure provisions resources (Day 1-2)
+1. Backend provisions resources (Day 1-2)
 2. Backend implements API (Day 2-4)
 3. Frontend builds UI in parallel (Day 2-4)
 4. Integration testing (Day 5)
@@ -342,12 +298,12 @@ Dependencies identified:
 - Frontend blocked on Backend API contract
 - Both blocked on Infrastructure provisioning
 
-Ready to proceed? Use /user-start to begin execution with the 3 active agents.
+Ready to proceed? Use /user-start to begin execution with the active agents.
 ```
 
 ## Notes
 
-- Deploys Product Manager first to create formal requirements
+- Deploys Orchestrator first to create formal requirements
 - Analyzes requirements to identify which sub-agents are needed
 - Only deploys relevant implementation agents (no unnecessary agents)
 - Each agent maintains their own task list in `.claude/tasks/[agent-name]-tasks.md`

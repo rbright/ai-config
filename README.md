@@ -60,65 +60,37 @@ just install
 
 ## 🤖 Specialized Sub-Agents
 
-The system employs 10 specialized sub-agents, each with specific expertise and tool access:
+Final consolidated set of sub-agents (5 roles):
 
-### 📋 Planning Stage
-- **[Product Manager](claude/.config/claude/agents/product-manager.md)** - Translates business requirements into technical specifications
-  - Creates comprehensive `requirements.md` documentation
-  - Defines acceptance criteria and scope
-  - Breaks down requirements by technical domain
+### 📋 Planning & Orchestration
+- **[Orchestrator](claude/.config/claude/agents/orchestrator.md)** — Defines requirements and coordinates execution
+  - Creates comprehensive `requirements.md` and acceptance criteria
+  - Manages cross-team dependencies and timelines
+  - Ensures smooth handoffs and quality gates
 
-- **[Orchestrator](claude/.config/claude/agents/orchestrator.md)** - Coordinates information flow and task delegation between agents
-  - Manages cross-team dependencies
-  - Creates unified project timelines
-  - Ensures smooth handoffs between teams
+### 🔨 Execution
+- **[Backend Engineer](claude/.config/claude/agents/backend-engineer.md)** — Server-side logic, APIs, data pipelines, and infrastructure
+  - Python/Go/TypeScript services; REST/GraphQL endpoints
+  - Data engineering with Polars; orchestration with Temporal
+  - Infrastructure-as-code with Terraform across AWS/GCP/Azure
 
-### 🔨 Execution Stage
-- **[Backend Engineer](claude/.config/claude/agents/backend-engineer.md)** - Develops server-side logic, APIs, and data models
-  - Implements using Python, Go, or TypeScript
-  - Creates RESTful and GraphQL endpoints
-  - Manages database schemas and business logic
+- **[Frontend Engineer](claude/.config/claude/agents/frontend-engineer.md)** — User interfaces with React/TypeScript
+  - Responsive, accessible UI components
+  - State management and API integration
 
-- **[Frontend Engineer](claude/.config/claude/agents/frontend-engineer.md)** - Builds user interfaces with React and TypeScript
-  - Creates responsive, accessible UI components
-  - Implements state management and API integration
-  - Ensures optimal user experience
+- **[Machine Learning Engineer](claude/.config/claude/agents/ml-engineer.md)** — Model development and deployment
+  - Training pipelines and experiments
+  - Inference performance and deployment
 
-- **[Infrastructure Engineer](claude/.config/claude/agents/infra-engineer.md)** - Provisions and manages cloud infrastructure
-  - Uses Terraform exclusively for IaC
-  - Manages AWS, GCP, and Azure resources
-  - Implements security and scaling strategies
-
-- **[Data Engineer](claude/.config/claude/agents/data-engineer.md)** - Builds ETL pipelines for data processing
-  - Uses Python with Polars for transformations
-  - Implements Temporal workflows for orchestration
-  - Manages data warehouse integrations
-
-- **[Machine Learning Engineer](claude/.config/claude/agents/ml-engineer.md)** - Develops and deploys ML models
-  - Uses PyTorch and Hugging Face frameworks
-  - Designs training pipelines and experiments
-  - Optimizes model performance and deployment
-
-### 🔍 Review Stage
-- **[QA](claude/.config/claude/agents/qa.md)** - Tests functionality against requirements
-  - Validates acceptance criteria
-  - Identifies defects and missing features
-  - Ensures quality user experience
-
-- **[Code Reviewer](claude/.config/claude/agents/code-reviewer.md)** - Reviews code for quality and best practices
-  - Identifies logic errors and performance issues
-  - Ensures adherence to coding standards
-  - Focuses on maintainability and architecture
-
-- **[Security Engineer](claude/.config/claude/agents/security-engineer.md)** - Analyzes security vulnerabilities
-  - Scans for OWASP Top 10 vulnerabilities
-  - Reviews authentication and authorization
-  - Ensures compliance with security standards
+### 🔍 Review
+- **[Reviewer](claude/.config/claude/agents/reviewer.md)** — QA, Code Review, and Security
+  - Validates requirements, quality, and security in a single pass
+  - Produces a consolidated report and remediation plan
 
 ## 🔄 Multi-Agent Development Workflow
 
 ### Planning Process (`/user-plan`)
-1. **[Product Manager](claude/.config/claude/agents/product-manager.md)** creates requirements.md
+1. **[Orchestrator](claude/.config/claude/agents/orchestrator.md)** creates requirements.md
 2. System identifies which implementation agents are needed
 3. Only relevant agents create execution plans in `.claude/tasks/[agent-name]-tasks.md`
 4. **[Orchestrator](claude/.config/claude/agents/orchestrator.md)** synthesizes plans and identifies dependencies
@@ -130,10 +102,8 @@ The system employs 10 specialized sub-agents, each with specific expertise and t
 4. Agents work independently on their task lists
 
 ### Review Process (`/user-review`)
-Deploys all three review agents in parallel:
-- **[QA](claude/.config/claude/agents/qa.md)** tests against requirements
-- **[Code Reviewer](claude/.config/claude/agents/code-reviewer.md)** analyzes code quality
-- **[Security Engineer](claude/.config/claude/agents/security-engineer.md)** scans for vulnerabilities
+Deploys the consolidated Reviewer:
+- **[Reviewer](claude/.config/claude/agents/reviewer.md)** validates functionality, code quality, and security
 
 Findings are synthesized into tasks for implementation agents.
 
@@ -149,7 +119,7 @@ All active agents update their task lists with:
 ```mermaid
 graph TB
     subgraph Planning
-        A["/user-plan<br/>Product Manager + Relevant Agents"]
+        A["/user-plan<br/>Orchestrator + Relevant Agents"]
     end
 
     subgraph Execution
@@ -159,7 +129,7 @@ graph TB
     end
 
     subgraph Review
-        E["/user-review<br/>QA + Code Reviewer + Security"]
+        E["/user-review<br/>Reviewer"]
     end
 
     subgraph Deployment
@@ -201,11 +171,11 @@ Each command is optimized with minimal necessary tools:
 
 | Command | Purpose | Allowed Tools | Active Agents |
 |---------|---------|---------------|---------------|
-| user-plan | Requirements & planning | Read, Glob, Grep, Task, TodoWrite, WebFetch | Product Manager, Relevant Implementation Agents, Orchestrator |
+| user-plan | Requirements & planning | Read, Glob, Grep, Task, TodoWrite, WebFetch | Orchestrator (requirements), Relevant Implementation Agents |
 | user-start | Task execution | Read, Task, TodoWrite, TodoRead | Only agents listed in root tasks.md |
 | user-lint | Code quality | Bash, LS, Grep | Direct execution (no agents) |
 | user-test | Testing | Bash, LS, Grep, Read | Direct execution (no agents) |
-| user-review | Code review | Read, Glob, Grep, Task, Bash, TodoRead, TodoWrite | QA, Code Reviewer, Security Engineer |
+| user-review | Code review | Read, Glob, Grep, Task, Bash, TodoRead, TodoWrite | Reviewer |
 | user-save | Progress tracking | Read, Task, TodoRead, Write | All active agents from tasks.md |
 
 ## 🏗️ Architecture
@@ -222,12 +192,9 @@ ai-config/
     ├── tasks/                 # Distributed task lists
     │   ├── backend-engineer-tasks.md
     │   ├── frontend-engineer-tasks.md
-    │   ├── infra-engineer-tasks.md
-    │   ├── data-engineer-tasks.md
     │   ├── ml-engineer-tasks.md
-    │   ├── qa-tasks.md
-    │   ├── code-reviewer-tasks.md
-    │   └── security-engineer-tasks.md
+    │   ├── orchestrator-tasks.md
+    │   └── reviewer-tasks.md
     └── .config/claude/
         ├── settings.json      # Global settings
         ├── commands/          # Command definitions
@@ -242,10 +209,9 @@ The system implements sophisticated patterns for agent collaboration:
 - **Parallel Execution** - Agents work simultaneously when dependencies allow
 - **Cross-Domain Coordination** - Orchestrator manages handoffs and dependencies
 - **Clear Boundaries** - Each agent has exclusive authority over their domain:
-  - Only [Data Engineer](claude/.config/claude/agents/data-engineer.md) builds ETL pipelines
-  - Only [Infrastructure Engineer](claude/.config/claude/agents/infrastructure-engineer.md) provisions resources
+  - Only [Backend Engineer](claude/.config/claude/agents/backend-engineer.md) builds ETL pipelines and provisions infrastructure
   - Only [Backend Engineer](claude/.config/claude/agents/backend-engineer.md) owns API documentation
-  - Review agents have read-only access
+  - Reviewer has read-only access
 
 ## 🤝 Contributing
 
