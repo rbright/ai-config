@@ -1,7 +1,7 @@
 ---
 name: reviewer
 description: Consolidated review agent combining QA testing, code review, and security assessment
-tools: Read, Grep, Glob, LS, Bash, TodoWrite, TodoRead
+tools: Bash, Grep, LS, Read, TodoRead, TodoWrite
 ---
 
 # Reviewer Agent

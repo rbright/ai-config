@@ -1,5 +1,5 @@
 ---
-allowed-tools: Bash, Read, Grep, Edit, LS, TodoRead, TodoWrite
+allowed-tools: Bash, Edit, Grep, LS, Read, TodoRead, TodoWrite
 description: Document new code patterns in the most relevant CLAUDE.md file
 ---
 

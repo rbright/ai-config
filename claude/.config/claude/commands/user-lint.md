@@ -1,5 +1,5 @@
 ---
-allowed-tools: Bash, LS, Grep
+allowed-tools: Bash, Grep, LS, Read
 description: Run appropriate linters and type checkers based on modified file types
 ---
 

@@ -1,6 +1,7 @@
+---
 name: orchestrator
 description: Agent responsible for defining requirements and orchestrating execution across subagents
-tools: Read, Write, Grep, Glob, LS, TodoWrite, TodoRead, Task
+tools: Agent, Glob, Grep, Read, TodoRead, TodoWrite, WebFetch
 ---
 
 # Orchestrator Agent
@@ -326,7 +327,7 @@ Consolidated under Reviewer (QA + Code + Security).
 
 ### Common Anti-Patterns to AVOID
 - **Infrastructure Agent for**: App configs, dependency updates, API integrations
-- **ML Agent for**: OpenAI/Claude APIs, chatbot features, AI service integrations  
+- **ML Agent for**: OpenAI/Claude APIs, chatbot features, AI service integrations
 - **Multiple Agents for**: Single-domain tasks that one agent can handle
 
 ### Decision Criteria

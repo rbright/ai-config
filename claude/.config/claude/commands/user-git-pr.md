@@ -1,5 +1,5 @@
 ---
-allowed-tools: Bash, Read, WebFetch, Grep
+allowed-tools: Bash, Grep, Read, WebFetch
 description: Create a GitHub pull request with Conventional Commits format
 ---
 

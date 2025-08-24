@@ -1,5 +1,5 @@
 ---
-allowed-tools: Bash, LS, Grep, Read
+allowed-tools: Bash, Grep, LS, Read
 description: Run appropriate test suites based on modified file types
 ---
 

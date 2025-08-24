@@ -1,5 +1,5 @@
 ---
-allowed-tools: Bash, Read, Grep, Agent
+allowed-tools: Agent, Bash, Grep, Read
 description: Analyze uncommitted changes and create logical commits with Conventional Commits format
 ---
 

@@ -1,5 +1,5 @@
 ---
-allowed-tools: Read, Task, TodoWrite, TodoRead
+allowed-tools: Agent, Read, TodoRead, TodoWrite
 description: Deploy active sub-agents to execute their tasks based on root tasks.md
 ---
 

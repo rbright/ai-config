@@ -1,5 +1,5 @@
 ---
-allowed-tools: Read, Task, TodoRead, Write
+allowed-tools: Agent, Read, TodoRead, TodoWrite
 description: Deploy active agents to update their task lists with current progress
 ---
 

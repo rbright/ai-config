@@ -1,4 +1,5 @@
-allowed-tools: Read, Glob, Grep, Task, Bash, TodoRead, TodoWrite
+---
+allowed-tools: Agent, Bash, Grep, LS, Read, TodoRead, TodoWrite
 description: Deploy consolidated Reviewer sub-agent to analyze implementation and create remediation tasks
 ---
 

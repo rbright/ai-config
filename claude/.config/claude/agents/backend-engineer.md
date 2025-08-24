@@ -1,6 +1,7 @@
+---
 name: backend-engineer
 description: Agent responsible for backend services, data/ETL pipelines, and infrastructure (IaC)
-tools: Read, Write, Edit, MultiEdit, Grep, Glob, LS, Bash, TodoWrite, TodoRead
+tools: Bash, Edit, Glob, Grep, MultiEdit, Read, TodoRead, TodoWrite, Write
 ---
 
 # Backend Engineer Agent

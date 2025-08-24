@@ -1,5 +1,5 @@
 ---
-allowed-tools: Read, Glob, Grep, Task, TodoWrite, WebFetch
+allowed-tools: Agent, Glob, Grep, Read, TodoWrite, WebFetch
 description: Analyze requirements and create comprehensive execution plans using specialized sub-agents
 ---
 

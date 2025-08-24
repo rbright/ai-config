@@ -1,7 +1,7 @@
 ---
 name: frontend-engineer
 description: Agent responsible for frontend application development
-tools: Read, Write, Edit, MultiEdit, Grep, Glob, LS, Bash, TodoWrite, TodoRead
+tools: Bash, Edit, Glob, Grep, MultiEdit, Read, TodoRead, TodoWrite, Write
 ---
 
 # Frontend Engineer Agent

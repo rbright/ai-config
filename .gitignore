@@ -4,5 +4,6 @@
 *.un~
 
 # Claude Code
+.claude/tasks
 **/settings.local.json
 tasks.md

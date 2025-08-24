@@ -1,5 +1,5 @@
 ---
-allowed-tools: Read, Glob, Grep, Agent, Write, MultiEdit, TodoRead, TodoWrite
+allowed-tools: Agent, Glob, Grep, MultiEdit, Read, TodoRead, TodoWrite, Write
 description: Refactor CLAUDE.md/AGENTS.md and rules files for optimal organization
 ---
 

@@ -1,5 +1,5 @@
 ---
-allowed-tools: Read, Glob, LS, Edit, Agent, TodoRead, TodoWrite
+allowed-tools: Agent, Edit, Glob, LS, Read, TodoRead, TodoWrite, Write
 description: Update documentation with current project structure, business logic, and diagrams
 ---
 
