@@ -120,7 +120,6 @@
     "deny": [
       "Bash(atlas schema apply:*)",
       "Bash(atlas schema clean:*)",
-      "Bash(curl:* | bash)",
       "Bash(dd:*)",
       "Bash(eval:*)",
       "Bash(fdisk:*)",
@@ -137,8 +136,7 @@
       "Bash(ssh:*)",
       "Bash(su:*)",
       "Bash(sudo:*)",
-      "Bash(umount:*)",
-      "Bash(wget:* | sh)"
+      "Bash(umount:*)"
     ],
     "defaultMode": "plan"
   },
