@@ -3,13 +3,23 @@ disable_response_storage = false
 file_opener = "cursor"
 hide_agent_reasoning = false
 model = "gpt-5"
-model_reasoning_effort = "high"
+model_reasoning_effort = "medium"
 model_reasoning_summary = "detailed"
 model_supports_reasoning_summaries = true
-model_verbosity = "low"
+model_verbosity = "medium"
 preferred_auth_method = "chatgpt"
 sandbox_mode = "danger-full-access"
 show_raw_agent_reasoning = false
+
+[profiles.plan]
+model = "gpt-5"
+model_reasoning_effort = "high"
+model_verbosity = "high"
+
+[profiles.act]
+model = "gpt-5"
+model_reasoning_effort = "medium"
+model_verbosity = "low"
 
 [history]
 persistence = "save-all"
@@ -28,3 +38,6 @@ args = ["-y", "mcp-remote@latest", "https://mcp.sentry.dev/mcp"]
 
 [sandbox_workspace_write]
 network_access = true
+
+[tools]
+web_search = true
