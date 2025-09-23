@@ -140,7 +140,6 @@
     ],
     "defaultMode": "plan"
   },
-  "model": "opus",
   "enableAllProjectMcpServers": false,
   "statusLine": {
     "type": "command",

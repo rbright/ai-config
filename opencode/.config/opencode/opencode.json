@@ -19,17 +19,12 @@
   },
 
   "mcp": {
-    "linear-ig": {
+    "linear": {
       "type": "remote",
       "url": "https://mcp.linear.app/sse",
       "enabled": true
     },
-    "linear-moonrise": {
-      "type": "remote",
-      "url": "https://mcp.linear.app/sse",
-      "enabled": true
-    },
-    "sentry-moonrise": {
+    "sentry": {
       "type": "remote",
       "url": "https://mcp.sentry.dev/mcp",
       "enabled": true

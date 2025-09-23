@@ -24,15 +24,11 @@ model_verbosity = "low"
 [history]
 persistence = "save-all"
 
-[mcp_servers.linear-ig]
+[mcp_servers.linear]
 command = "npx"
 args = ["-y", "mcp-remote", "https://mcp.linear.app/sse"]
 
-[mcp_servers.linear-moonrise]
-command = "npx"
-args = ["-y", "mcp-remote", "https://mcp.linear.app/sse"]
-
-[mcp_servers.sentry-moonrise]
+[mcp_servers.sentry]
 command = "npx"
 args = ["-y", "mcp-remote@latest", "https://mcp.sentry.dev/mcp"]
 
