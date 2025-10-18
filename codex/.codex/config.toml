@@ -1,5 +1,6 @@
 approval_policy = "never"
 disable_response_storage = false
+experimental_use_rmcp_client = true
 file_opener = "cursor"
 hide_agent_reasoning = false
 model = "gpt-5"
@@ -25,8 +26,7 @@ model_verbosity = "low"
 persistence = "save-all"
 
 [mcp_servers.linear]
-command = "npx"
-args = ["-y", "mcp-remote", "https://mcp.linear.app/sse"]
+url = "https://mcp.linear.app/mcp"
 
 [mcp_servers.sentry]
 command = "npx"
