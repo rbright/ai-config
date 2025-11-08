@@ -1,6 +1,5 @@
 approval_policy = "never"
 disable_response_storage = false
-experimental_use_rmcp_client = true
 file_opener = "cursor"
 hide_agent_reasoning = false
 model = "gpt-5"
@@ -9,18 +8,12 @@ model_reasoning_summary = "detailed"
 model_supports_reasoning_summaries = true
 model_verbosity = "medium"
 preferred_auth_method = "chatgpt"
-sandbox_mode = "danger-full-access"
+sandbox_mode = "workspace-write"
 show_raw_agent_reasoning = false
 
-[profiles.plan]
-model = "gpt-5"
-model_reasoning_effort = "high"
-model_verbosity = "high"
-
-[profiles.act]
-model = "gpt-5"
-model_reasoning_effort = "medium"
-model_verbosity = "low"
+[features]
+rmcp_client = true
+web_search_request = true
 
 [history]
 persistence = "save-all"
@@ -35,5 +28,23 @@ args = ["-y", "mcp-remote@latest", "https://mcp.sentry.dev/mcp"]
 [sandbox_workspace_write]
 network_access = true
 
+[shell_environment_policy]
+inherit = "all"
+exclude = [
+    "AWS_*",
+    "SENTRY_*",
+    "*_CC_*",
+    "*_CLIENT_ID",
+    "*_KEY",
+    "*_PASSWORD",
+    "*_SECRET",
+    "*_TOKEN",
+    "*_USERNAME",
+]
+
 [tools]
 web_search = true
+view_image = true
+
+[tui]
+notifications = true
