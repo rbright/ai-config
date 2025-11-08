@@ -1,32 +1,39 @@
-approval_policy = "never"
-disable_response_storage = false
-file_opener = "cursor"
-hide_agent_reasoning = false
+################################################################################
+# Authentication
+################################################################################
+
+forced_login_method = "chatgpt"
+
+################################################################################
+# Model Selection
+################################################################################
+
+model_provider = "openai"
 model = "gpt-5"
+review_model = "gpt-5-codex"
+
+################################################################################
+# Reasoning & Verbosity
+################################################################################
+
 model_reasoning_effort = "high"
-model_reasoning_summary = "detailed"
+model_reasoning_summary = "auto"
 model_supports_reasoning_summaries = true
 model_verbosity = "medium"
-preferred_auth_method = "chatgpt"
+
+################################################################################
+# Approval & Sandbox
+################################################################################
+
+approval_policy = "never"
 sandbox_mode = "workspace-write"
-show_raw_agent_reasoning = false
-
-[features]
-rmcp_client = true
-web_search_request = true
-
-[history]
-persistence = "save-all"
-
-[mcp_servers.linear]
-url = "https://mcp.linear.app/mcp"
-
-[mcp_servers.sentry]
-command = "npx"
-args = ["-y", "mcp-remote@latest", "https://mcp.sentry.dev/mcp"]
 
 [sandbox_workspace_write]
 network_access = true
+
+################################################################################
+# Shell Environment Policy
+################################################################################
 
 [shell_environment_policy]
 inherit = "all"
@@ -42,9 +49,42 @@ exclude = [
     "*_USERNAME",
 ]
 
-[tools]
-web_search = true
-view_image = true
+################################################################################
+# History & File Opener
+################################################################################
+
+[history]
+persistence = "save-all"
+
+file_opener = "cursor"
+
+################################################################################
+# UI & Notifications
+################################################################################
 
 [tui]
 notifications = true
+
+disable_paste_burst = false
+hide_agent_reasoning = false
+show_raw_agent_reasoning = false
+
+################################################################################
+# Feature Flags
+################################################################################
+
+[features]
+rmcp_client = true
+view_image_tool = true
+web_search_request = true
+
+################################################################################
+# MCP Servers
+################################################################################
+
+[mcp_servers.linear]
+url = "https://mcp.linear.app/mcp"
+
+[mcp_servers.sentry]
+command = "npx"
+args = ["-y", "mcp-remote@latest", "https://mcp.sentry.dev/mcp"]
