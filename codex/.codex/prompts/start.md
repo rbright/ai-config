@@ -1,145 +1,21 @@
-
-# user-start
-
-Deploy the active sub-agents identified in root `tasks.md` to begin parallel execution of their respective task lists.
+---
+description: Start executing the plan in TASKS.md with context from REQUIREMENTS.md.
+---
 
 ## Implementation
 
-1. Read root tasks.md to identify active agents:
-   - Parse the "Active Sub-Agents" section
-   - Extract list of agents involved in current work
-   - Identify task list locations for each agent
-   - Note coordination points between agents
+1. Load context
+   - Read `REQUIREMENTS.md` for scope, constraints, and acceptance criteria.
+   - Read `TASKS.md` to identify next unblocked items.
 
-2. Deploy Orchestrator first:
-   - Task: Coordinate the execution across all active agents
-   - Review current state of all task lists
-   - Identify any blocking dependencies
-   - Create execution order based on dependencies
+2. Execute work
+   - Begin with the highest‑priority unblocked tasks in "Next Up".
+   - Update `TASKS.md` as you progress: mark status, add notes, record blockers and follow‑ups.
 
-3. Deploy implementation agents in parallel:
-   For each active agent identified in tasks.md:
+3. Keep momentum
+   - When a dependency clears, immediately pull the next item forward.
+   - Surface risks or scope gaps back into `REQUIREMENTS.md` (Assumptions/Risks) and add mitigation tasks.
 
-   - **Backend Engineer**: Work on tasks in `.claude/tasks/backend-engineer-tasks.md`
-   - **Frontend Engineer**: Work on tasks in `.claude/tasks/frontend-engineer-tasks.md`
-   - **Machine Learning Engineer**: Work on tasks in `.claude/tasks/ml-engineer-tasks.md`
+## Boundaries
 
-4. Execution instructions for each agent:
-   - Start with highest priority unblocked tasks
-   - Mark tasks as "in_progress" when starting
-   - Implement following project conventions (CLAUDE.md)
-   - Run appropriate quality checks (linting, tests)
-   - Mark tasks as "completed" when done
-   - Check for new tasks or dependencies
-
-5. Orchestrator monitors progress:
-   - Track completion across all agents
-
-## Boundaries & Scope
-- Kick off agents and coordinate only; do not modify code directly
-- Respect agent-specific scopes and permissions
-
-## Repo Conventions
-- Follow `CLAUDE.md` for multi-agent execution and coordination
-- Ensure updates flow into each agent’s task list under `.claude/tasks/`
-
-## Task List References
-- Use `TodoWrite` to set statuses across agent task files
-- Record coordination outcomes in root `tasks.md`
-
-## Templates/Reports
-```markdown
-### Start Session Summary
-- Active agents:
-- Initial tasks:
-- Dependencies:
-- Risks/blockers:
-```
-   - Identify when dependencies are resolved
-   - Coordinate handoffs between agents
-   - Report overall progress to user
-
-## Agent Coordination Patterns
-
-### Dependency Management
-- Backend (Infra) tasks often block others
-- Backend API contracts block Frontend
-- Data pipelines (Backend) may block ML training
-- Orchestrator manages these dependencies
-
-### Parallel Execution
-- Agents work independently when possible
-- Frontend and Backend can work in parallel after API contract defined
-- Infrastructure and Data pipelines can run concurrently
-
-### Quality Gates
-Each agent maintains quality through:
-- Following CLAUDE.md conventions
-- Running domain-specific linters
-- Writing and running tests
-- Updating their task lists continuously
-
-## Example Usage
-
-```text
-User: /user-start
-Assistant: I'll deploy the active sub-agents identified in tasks.md to begin execution.
-
-Reading root tasks.md...
-
-Active Sub-Agents:
-✅ Backend Engineer - APIs, data/ETL, and infrastructure
-✅ Frontend Engineer - UI components and user experience
-
-Deploying Orchestrator to coordinate execution...
-
-[Orchestrator]
-Reviewing task lists:
-- Backend: 8 tasks (2 completed, 6 pending)
-- Frontend: 6 tasks (1 completed, 5 pending)
-
-Dependencies identified:
-- Frontend waiting on Backend API contract
-- Backend (Infra) must provision database
-
-Execution order: Backend (Infra) → Backend → Frontend
-
-Deploying active implementation agents...
-
-[Backend Engineer]
-Working on: Provision RDS database instance (Terraform)
-Status: Terraform apply in progress...
-✅ Database provisioned successfully
-Task marked complete
-
-[Backend Engineer]
-Unblocked! Starting: Design user model schema
-✅ Schema created with auth fields
-✅ Tests written and passing
-Task marked complete
-
-[Frontend Engineer]
-Starting: Create login form component
-✅ Component built with validation
-✅ Tests passing
-Task marked complete
-
-[Orchestrator]
-Progress Update:
-- Backend (Infra): 4/4 infra tasks complete ✅
-- Backend: 3/8 service tasks complete
-- Frontend: 2/6 tasks complete
-- Next: Backend API endpoint, then Frontend integration
-
-All agents working in parallel where possible. No blockers detected.
-```
-
-## Notes
-
-- Only deploys agents listed as active in root tasks.md
-- Orchestrator manages dependencies between agents
-- Agents work in parallel when possible
-- Each agent maintains their own task list
-- Quality checks are domain-specific per agent
-- Progress tracked across all active agents
-- Works with distributed task management system
+- Coordinate and update the plan; avoid unrelated code changes unless the task explicitly calls for them.
