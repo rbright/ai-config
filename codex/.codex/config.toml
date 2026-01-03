@@ -35,29 +35,35 @@ model_auto_compact_token_limit = 233000
 # History & File Opener
 ################################################################################
 
+file_opener = "cursor"
+
 [history]
 persistence = "save-all"
-
-file_opener = "cursor"
 
 ################################################################################
 # UI & Notifications
 ################################################################################
 
-[tui]
-notifications = true
-
-disable_paste_burst = false
 hide_agent_reasoning = false
 show_raw_agent_reasoning = false
+
+[tui]
+animations = true
+notifications = true
 
 ################################################################################
 # Feature Flags
 ################################################################################
 
 [features]
+apply_patch_freeform = true
+ghost_commit = false
 rmcp_client = true
+shell_snapshot = true
+skills = true
+unified_exec = true
 view_image_tool = true
+warnings = true
 web_search_request = true
 
 ################################################################################
