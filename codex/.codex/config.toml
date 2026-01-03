@@ -22,33 +22,14 @@ model_supports_reasoning_summaries = true
 model_verbosity = "medium"
 
 ################################################################################
-# Approval & Sandbox
+# Compaction
 ################################################################################
 
-approval_policy = "never"
-sandbox_mode = "workspace-write"
+tool_output_token_limit = 25000
 
-[sandbox_workspace_write]
-network_access = true
-writable_roots = ["/Users/rbright/.cache/uv"]
-
-################################################################################
-# Shell Environment Policy
-################################################################################
-
-[shell_environment_policy]
-inherit = "all"
-exclude = [
-    "AWS_*",
-    "SENTRY_*",
-    "*_CC_*",
-    "*_CLIENT_ID",
-    "*_KEY",
-    "*_PASSWORD",
-    "*_SECRET",
-    "*_TOKEN",
-    "*_USERNAME",
-]
+# Leave room for native compaction near the 272–273k context window.
+# Formula: 273000 - (tool_output_token_limit + 15000)
+model_auto_compact_token_limit = 233000
 
 ################################################################################
 # History & File Opener
@@ -89,3 +70,39 @@ url = "https://mcp.linear.app/mcp"
 [mcp_servers.sentry]
 command = "npx"
 args = ["-y", "mcp-remote@latest", "https://mcp.sentry.dev/mcp"]
+startup_timeout_sec = 30
+
+################################################################################
+# Approval & Sandbox
+################################################################################
+
+approval_policy = "never"
+sandbox_mode = "danger-full-access"
+
+[projects."/Users/rbright/Projects"]
+trust_level = "trusted"
+
+[projects."/Users/rbright/worktrees"]
+trust_level = "trusted"
+
+[sandbox_workspace_write]
+network_access = true
+writable_roots = ["/Users/rbright/.cache/uv"]
+
+################################################################################
+# Shell Environment Policy
+################################################################################
+
+[shell_environment_policy]
+inherit = "all"
+exclude = [
+    "AWS_*",
+    "SENTRY_*",
+    "*_CC_*",
+    "*_CLIENT_ID",
+    "*_KEY",
+    "*_PASSWORD",
+    "*_SECRET",
+    "*_TOKEN",
+    "*_USERNAME",
+]
