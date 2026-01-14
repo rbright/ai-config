@@ -9,8 +9,8 @@ forced_login_method = "chatgpt"
 ################################################################################
 
 model_provider = "openai"
-model = "gpt-5.2-codex"
-review_model = "gpt-5.2-codex"
+model = "gpt-5.2"
+review_model = "gpt-5.2"
 
 ################################################################################
 # Reasoning & Verbosity
@@ -35,7 +35,7 @@ model_auto_compact_token_limit = 233000
 # History & File Opener
 ################################################################################
 
-file_opener = "cursor"
+file_opener = "vscode"
 
 [history]
 persistence = "save-all"
@@ -92,8 +92,10 @@ trust_level = "trusted"
 trust_level = "trusted"
 
 [sandbox_workspace_write]
+exclude_slash_tmp = false
+exclude_tmpdir_env_var = false
 network_access = true
-writable_roots = ["/Users/rbright/.cache/uv"]
+writable_roots = ["/private/tmp", "/var/folders", "/Users/rbright/.cache/uv"]
 
 ################################################################################
 # Shell Environment Policy
