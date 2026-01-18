@@ -1,1 +1,30 @@
-CLAUDE.md
+# Agent Instructions
+
+This repository is a home for **version-controlled AI coding configuration** (Codex CLI, Claude Code, and related tooling).
+
+This `AGENTS.md` is intentionally **repo-specific**. Do not copy/paste the global Codex instructions from
+`codex/.codex/AGENTS.md` into here; that file is meant to be installed into `~/.codex/AGENTS.md` and used across repos.
+
+## Entry points
+- `just --list` — discover available workflows (preferred starting point)
+- `just install` — install repo-managed config into `$HOME` via GNU Stow + sync Codex `config.toml`
+- `just codex-sync-config` — copy-sync `codex/.codex/config.toml` → `~/.codex/config.toml`
+- `just codex-review` — run the local high-recall Codex review gate for the working tree
+
+## Repo layout (what to edit)
+- `README.md` — minimal root entry point (links out)
+- `codex/` — Codex CLI assets (prompts, skills, global `AGENTS.md`, canonical `config.toml`)
+- `claude/` — Claude Code config (kept intact for future use)
+- `opencode/` — OpenCode config (if present)
+- `scripts/` — small local helpers (avoid adding dependencies unless necessary)
+
+## Working conventions for this repo
+- Treat changes as **dotfiles/config** changes: keep them portable, deterministic, and free of secrets.
+- Prefer editing the **repo source of truth** (e.g. `codex/.codex/...`) rather than anything under `$HOME`.
+- Keep Stow packages **symlink-safe** (Codex rewrites `~/.codex/config.toml`, so we sync it as a regular file).
+- For multi-step work, keep `PLAN.md` and `SESSION.md` updated (checklists + decisions/trade-offs).
+
+## Validation expectations (practical, local)
+- Always run `just --list` after changing the `justfile`.
+- If you change install paths or Stow structure, run a dry-run: `stow -n -R codex` (and/or `claude`, `opencode`).
+- If you change Codex defaults, run `just codex-sync-config` and sanity-check Codex starts with the expected config.
