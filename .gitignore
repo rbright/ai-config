@@ -4,8 +4,12 @@
 *.un~
 
 # AI agents
-.claude/tasks
-**/settings.local.json
-tasks.md
 PLAN.md
 SESSION.md
+
+# Claude Code
+.claude/tasks
+**/settings.local.json
+
+# Codex
+codex/.codex/skills/.system

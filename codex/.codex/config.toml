@@ -47,6 +47,9 @@ persistence = "save-all"
 hide_agent_reasoning = false
 show_raw_agent_reasoning = false
 
+[notice.model_migrations]
+"gpt-5.2" = "gpt-5.2-codex"
+
 [tui]
 animations = true
 notifications = true
@@ -96,10 +99,22 @@ enabled = false
 [feedback]
 enabled = false
 
+[projects."/Users/rbright/worktrees"]
+trust_level = "trusted"
+
 [projects."/Users/rbright/Projects"]
 trust_level = "trusted"
 
-[projects."/Users/rbright/worktrees"]
+[projects."/Users/rbright/Projects/ai-config"]
+trust_level = "trusted"
+
+[projects."/Users/rbright/Projects/dotfiles"]
+trust_level = "trusted"
+
+[projects."/Users/rbright/Projects/nixos-config"]
+trust_level = "trusted"
+
+[projects."/Users/rbright/Projects/obsidian/Personal"]
 trust_level = "trusted"
 
 [sandbox_workspace_write]
