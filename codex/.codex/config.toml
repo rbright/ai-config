@@ -16,7 +16,7 @@ review_model = "gpt-5.2"
 # Reasoning & Verbosity
 ################################################################################
 
-model_reasoning_effort = "high"
+model_reasoning_effort = "xhigh"
 model_reasoning_summary = "auto"
 model_supports_reasoning_summaries = true
 model_verbosity = "medium"
@@ -78,12 +78,23 @@ command = "npx"
 args = ["-y", "mcp-remote@latest", "https://mcp.sentry.dev/mcp"]
 startup_timeout_sec = 30
 
+[mcp_servers.todoist]
+command = "npx"
+args = ["-y", "mcp-remote@latest", "https://ai.todoist.net/mcp"]
+startup_timeout_sec = 30
+
 ################################################################################
-# Approval & Sandbox
+# Privacy & Security
 ################################################################################
 
 approval_policy = "never"
 sandbox_mode = "danger-full-access"
+
+[analytics]
+enabled = false
+
+[feedback]
+enabled = false
 
 [projects."/Users/rbright/Projects"]
 trust_level = "trusted"
@@ -96,10 +107,6 @@ exclude_slash_tmp = false
 exclude_tmpdir_env_var = false
 network_access = true
 writable_roots = ["/private/tmp", "/var/folders", "/Users/rbright/.cache/uv"]
-
-################################################################################
-# Shell Environment Policy
-################################################################################
 
 [shell_environment_policy]
 inherit = "all"

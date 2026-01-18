@@ -3,7 +3,9 @@
 # vim undo files
 *.un~
 
-# Claude Code
+# AI agents
 .claude/tasks
 **/settings.local.json
 tasks.md
+PLAN.md
+SESSION.md
