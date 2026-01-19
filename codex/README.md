@@ -53,8 +53,6 @@ Key prompts:
 - `codex/.codex/prompts/start.md` — start executing tasks (updates `TASKS.md` as you go)
 - `codex/.codex/prompts/review.md` — review changes against `REQUIREMENTS.md` and write findings into `TASKS.md`
 - `codex/.codex/prompts/save.md` — capture current progress back into `TASKS.md`
-- `codex/.codex/prompts/git-commit.md` — group changes and write Conventional Commits
-- `codex/.codex/prompts/git-pr.md` — create a PR with a useful title/body
 - `codex/.codex/prompts/coderabbit.md` — run CodeRabbit CLI locally for a second opinion
 - `codex/.codex/prompts/gate.md` — run lint/typecheck/tests, then a final local review gate
 
