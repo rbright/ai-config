@@ -68,6 +68,7 @@ Included skills:
   - then run a high-recall Codex review pass
   - optionally run CodeRabbit CLI (`coderabbit --prompt-only`)
 - `codex/.codex/skills/gh-address-bot-feedback/SKILL.md` — fetch and address CodeRabbit / Codex Connector feedback on an open GitHub PR using `gh`
+- `codex/.codex/skills/commit-and-pr/SKILL.md` — split staged changes into Conventional Commits, push, and open a PR via `gh`
 
 ### High-recall Codex reviews
 
