@@ -63,6 +63,7 @@ notifications = true
 
 [features]
 apply_patch_freeform = true
+child_agents_md = true
 collab = true
 ghost_commit = false
 rmcp_client = true
