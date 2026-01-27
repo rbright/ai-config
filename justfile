@@ -8,10 +8,17 @@ set positional-arguments
 default:
     @just --list
 
-# Install repo-managed config into $HOME (Stow + Codex config sync).
-install:
-    stow -R claude codex opencode
-    scripts/codex-sync-config.sh
+# Install all configs, or pass packages (e.g. `just install codex`).
+install *PACKAGES:
+    if [[ -z "{{PACKAGES}}" ]]; then \
+        stow -R claude codex opencode; \
+        scripts/codex-sync-config.sh; \
+      else \
+        stow -R {{PACKAGES}}; \
+        if [[ " {{PACKAGES}} " == *" codex "* ]]; then \
+          scripts/codex-sync-config.sh; \
+        fi; \
+      fi
 
 # Restow a specific package (e.g. `just stow codex`).
 stow PACKAGE:

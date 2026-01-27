@@ -1,21 +1,22 @@
 # Agent Instructions
 
-This repository is a home for **version-controlled AI coding configuration** (Codex CLI, Claude Code, and related tooling).
+This repository is a home for **version-controlled AI coding configuration** across multiple agents. Codex is the primary agent and reads this `AGENTS.md`; Claude Code imports it via `@AGENTS.md`.
 
 This `AGENTS.md` is intentionally **repo-specific**. Do not copy/paste the global Codex instructions from
 `codex/.codex/AGENTS.md` into here; that file is meant to be installed into `~/.codex/AGENTS.md` and used across repos.
 
 ## Entry points
 - `just --list` — discover available workflows (preferred starting point)
-- `just install` — install repo-managed config into `$HOME` via GNU Stow + sync Codex `config.toml`
+- `just install` — install all repo-managed configs into `$HOME` via GNU Stow
+- `just install codex` — install a specific agent config (also works for `claude`/`opencode`)
 - `just codex-sync-config` — copy-sync `codex/.codex/config.toml` → `~/.codex/config.toml`
 - `just codex-review` — run the local high-recall Codex review gate for the working tree
 
 ## Repo layout (what to edit)
 - `README.md` — minimal root entry point (links out)
 - `codex/` — Codex CLI assets (prompts, skills, global `AGENTS.md`, canonical `config.toml`)
-- `claude/` — Claude Code config (kept intact for future use)
-- `opencode/` — OpenCode config (if present)
+- `claude/` — Claude Code config
+- `opencode/` — OpenCode config
 - `scripts/` — small local helpers (avoid adding dependencies unless necessary)
 
 ## Working conventions for this repo
