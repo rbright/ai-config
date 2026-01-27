@@ -15,6 +15,7 @@ Turn a “ready for review” working tree into a clean series of Conventional C
 - All intended changes are staged (index is the source of truth).
 
 ## Preflight state (before splitting commits)
+0. **Quality gates already run** (use the `pre-review-gate` skill if available).
 1. **Not on a protected branch**: don’t run on `main`/`master` (or your repo’s default branch).
    - `git branch --show-current`
 2. **There are staged changes to commit** (the index is your “snapshot” to split).
@@ -45,6 +46,7 @@ The goal is to reuse whatever the repo already does (types, scopes, naming), not
 - Prefer existing scopes verbatim if they already match repo conventions.
 - Normalize new scopes to lowercase kebab-case (e.g. `business-search`, not `BusinessSearch` or `business_search`).
 - If history contains an obvious typo variant (e.g. `busines-search` vs `business-search`), prefer the corrected/most common form and keep future commits consistent.
+- If there is no clear Conventional Commit history, default to `feat`, `fix`, `refactor`, `docs`, `test`, `chore`, `ci`, `build`, `perf` and keep scopes minimal.
 
 ## 2) Propose a commit plan (from the staged diff)
 Work only from the staged changes:
@@ -68,6 +70,7 @@ For each planned commit, specify:
 - **Message**: `type(scope): imperative summary`
 - **Files**: list of staged paths
 - **Body (optional)**: why/notes; include `BREAKING CHANGE:` footer when applicable
+- **Test evidence**: reference the exact commands and results already run
 
 ## 3) Execute the commit plan (default: file-grouped, automatable)
 ### File-grouped mode (recommended)
@@ -86,6 +89,8 @@ Execution pattern:
       - Add a body with a second `-m` when it materially helps review.
    4) Re-stage remaining files for the next commit:
       - `git add -- $all_paths`
+   5) Sanity check that the working tree only contains expected (unstaged) files:
+      - `git status --porcelain`
 
 ### Hunk-splitting mode (when a file spans multiple commits)
 If a single file must be split across commits, switch to hunk-based staging:
@@ -159,3 +164,4 @@ EOF
 ## Boundaries
 - Do not rewrite history (no `rebase`, `reset --hard`, `push --force`) unless explicitly requested.
 - Do not auto-merge. Creating the PR is the end of this workflow.
+- If `gh` cannot find a PR template or repo metadata, stop and report what’s missing.
