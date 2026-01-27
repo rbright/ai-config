@@ -63,9 +63,9 @@ notifications = true
 
 [features]
 apply_patch_freeform = true
-child_agents_md = true
-collab = true
-ghost_commit = false
+child_agents_md = false
+collab = false
+collaboration_modes = true
 rmcp_client = true
 shell_snapshot = true
 skills = true
@@ -74,6 +74,7 @@ unified_exec = true
 view_image_tool = true
 warnings = true
 web_search_request = true
+undo = false
 
 ################################################################################
 # MCP Servers
@@ -89,7 +90,7 @@ url = "https://mcp.linear.app/mcp"
 [mcp_servers.sentry]
 command = "npx"
 args = ["-y", "mcp-remote@latest", "https://mcp.sentry.dev/mcp"]
-startup_timeout_sec = 30
+startup_timeout_sec = 30.0
 
 [mcp_servers.todoist]
 command = "npx"
