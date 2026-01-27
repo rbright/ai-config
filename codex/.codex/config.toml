@@ -9,8 +9,8 @@ forced_login_method = "chatgpt"
 ################################################################################
 
 model_provider = "openai"
-model = "gpt-5.2"
-review_model = "gpt-5.2"
+model = "gpt-5.2-codex"
+review_model = "gpt-5.2-codex"
 
 ################################################################################
 # Reasoning & Verbosity
