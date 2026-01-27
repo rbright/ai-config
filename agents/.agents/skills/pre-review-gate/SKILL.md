@@ -1,6 +1,6 @@
 ---
 name: pre-review-gate
-description: Run the local "ready for review" gate before asking for human review or opening a PR. Use to (1) run the repo’s lint/typecheck/tests (prefer the same commands CI runs), then (2) run `codex review` as a final automated review pass, and optionally (3) run CodeRabbit CLI (`coderabbit --prompt-only`) to catch additional issues and reduce GitHub Actions feedback loops.
+description: Run the local "ready for review" gate: lint/typecheck/tests, security scan (Aikido), Codex review, and CodeRabbit for a second opinion.
 ---
 
 # Pre-Review Gate
@@ -28,12 +28,18 @@ If the repo uses a monorepo task runner (Nx/Turbo/Bazel/etc.), use it rather tha
 Run in this order:
 1. **Lint / formatting checks**
 2. **Type checking**
-3. **Tests**
+3. **Tests** (cover changed functionality; use targeted tests if the full suite is too heavy, but do not skip critical coverage)
 
 If anything fails, fix it and re-run from the failing step forward.
 
-## 3) Final gate: run Codex local review
-Use `codex review` as the last gate *after* lint/typecheck/tests pass.
+## 3) Security scan (Aikido)
+Run Aikido on all generated/added/modified first-party code:
+- Use **aikido_full_scan** and provide the full file content to the scanner.
+- If issues are found, fix them and re-run the scan until clean.
+- If the Aikido MCP server is missing or not running, report it and reference the setup guide: https://help.aikido.dev/ide-plugins/aikido-mcp
+
+## 4) Final gate: run Codex local review
+Use `codex review` as the last gate *after* lint/typecheck/tests and the Aikido scan pass.
 
 Recommended modes:
 - Working tree review (best during iteration): `codex review --uncommitted`
@@ -49,18 +55,22 @@ If you prefer the built-in `codex review --uncommitted` / `--base` modes, you ca
 If you need stricter guidance, pass a short custom prompt such as:
 - “Focus on correctness, missing tests, and footguns. List **Blockers** first, then **Suggested improvements**, then **Nitpicks**. Include file paths and concrete fixes.”
 
-## 4) Optional: run CodeRabbit CLI (second opinion)
+## 5) CodeRabbit CLI review (second opinion)
 If CodeRabbit CLI is installed/configured, run it after `codex review` to catch additional issues:
 - Uncommitted changes: `coderabbit --prompt-only --type uncommitted`
 - Against a base branch: `coderabbit --prompt-only --base main`
+Iterate until CodeRabbit feedback is resolved or a blocking issue is clearly documented.
 
 Notes:
 - CodeRabbit CLI can take ~7–30+ minutes; run it in the background if needed and come back when it finishes.
 - Avoid running it more than ~3 times per change set to keep iterations efficient.
 
-## 5) Produce a “Gate Report”
+If CodeRabbit CLI is not available, note that in the report and proceed with the remaining gates.
+
+## 6) Produce a “Gate Report”
 Conclude with a short report:
 - Commands run + pass/fail (and any failures fixed)
+- Aikido: issues found + fixes + rescan status
 - Codex review: blockers + actions taken
-- CodeRabbit (if run): blockers + actions taken
+- CodeRabbit: blockers + actions taken (or not run, with reason)
 - Verdict: **Ready for human review** / **Not ready** (with next steps)

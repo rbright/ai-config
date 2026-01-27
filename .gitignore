@@ -1,10 +1,11 @@
 .DS_Store
 *.un~
 
-# AI agents
-**/.agents/skills
-PLAN.md
-SESSION.md
+# Agents
+**/.agents/skills/find-skills
+**/.agents/skills/frontend-design
+**/.agents/skills/mermaid-diagrams
+**/.agents/skills/vercel-react-best-practices
 
 # Claude Code
 **/claude/settings.local.json
@@ -12,3 +13,7 @@ SESSION.md
 
 # Codex
 **/.codex/skills/.system
+
+# Swssions
+PLAN.md
+SESSION.md

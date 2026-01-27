@@ -11,7 +11,7 @@ just --list
 # Install all agent configs
 just install
 
-# Install a single agent config (codex/claude/opencode)
+# Install a single package (codex/claude/opencode/agents)
 just install codex
 ```
 
@@ -19,13 +19,13 @@ just install codex
 
 | Agent                                                             | Instructions                                                                                                                                                                  |
 | ----------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Codex CLI](https://developers.openai.com/codex/config-reference) | <details><summary><a href="codex/">codex/</a></summary>Install: `just install codex`<br>Sync defaults: `just codex-sync-config`<br>Review gate: `just codex-review`</details> |
+| [Codex CLI](https://developers.openai.com/codex/config-reference) | <details><summary><a href="codex/">codex/</a></summary>Install: `just install codex`<br>Sync defaults: `just sync codex`<br>Review gate: `just codex-review`</details> |
 | [Claude Code](https://code.claude.com/docs/en/settings)           | <details><summary><a href="claude/">claude/</a></summary>Install: `just install claude`</details>                                                                             |
 | [OpenCode](https://opencode.ai/docs/config/)                      | <details><summary><a href="opencode/">opencode/</a></summary>Install: `just install opencode`</details>                                                                       |
 
 ## Codex skills
 
-Installed under `codex/.codex/skills/`.
+Stored under `agents/.agents/skills/`, stowed to `~/.agents/skills/`, and symlinked into `codex/.codex/skills/`.
 
 | Skill                                                                                                 | Description                                                        |
 | ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |

@@ -3,19 +3,22 @@
 This directory contains the repo-managed **Codex CLI** setup:
 
 - `codex/.codex/config.toml` — preferred Codex defaults (model, MCP servers, sandbox/approvals, etc.)
-- `codex/.codex/prompts/` — reusable prompt templates (plan/review/gate/etc.)
-- `codex/.codex/skills/` — Codex skills (procedural workflows + scripts)
+- `agents/.agents/skills/` — shared skills (source of truth)
+- `codex/.codex/skills/` — Codex-visible skills (symlinked to `~/.agents/skills/`)
 - `codex/.codex/AGENTS.md` — global “how to work” instructions for Codex sessions in this repo
 
-Codex itself stores auth/history/session state in `~/.codex/`, so this repo **stows only the version-controlled assets that are stable as symlinks** (prompts, skills, and `AGENTS.md`). The stateful files under `~/.codex/` remain owned by Codex.
+Codex itself stores auth/history/session state in `~/.codex/`, so this repo **stows only the version-controlled assets that are stable as symlinks** (skills and `AGENTS.md`). Shared skills are stowed to `~/.agents/skills`, and Codex skill entries point there.
 
 ## Install into `~/.codex`
 
 From the repo root:
 
 ```sh
-# Stow Codex prompts/skills/AGENTS.md into ~/.codex
+# Stow Codex skills/AGENTS.md into ~/.codex
 stow codex
+
+# Stow shared skills into ~/.agents/skills
+stow agents
 ```
 
 Or use the repo’s `justfile` wrapper (also installs `claude/` + `opencode/`):
@@ -41,34 +44,23 @@ scripts/codex-sync-config.sh
 Or via `just`:
 
 ```sh
-just codex-sync-config
+just sync codex
 ```
-
-## Prompts
-
-Prompt templates live in `codex/.codex/prompts/` and are installed into `~/.codex/prompts` via Stow.
-
-Key prompts:
-- `codex/.codex/prompts/plan.md` — create `REQUIREMENTS.md` + `TASKS.md` from a problem/issue URL
-- `codex/.codex/prompts/start.md` — start executing tasks (updates `TASKS.md` as you go)
-- `codex/.codex/prompts/review.md` — review changes against `REQUIREMENTS.md` and write findings into `TASKS.md`
-- `codex/.codex/prompts/save.md` — capture current progress back into `TASKS.md`
-- `codex/.codex/prompts/coderabbit.md` — run CodeRabbit CLI locally for a second opinion
-- `codex/.codex/prompts/gate.md` — run lint/typecheck/tests, then a final local review gate
-
-Tip: depending on your Codex build, prompts may be selectable via the prompts picker or by typing `/prompts:<name>`.
 
 ## Skills
 
-Skills live in `codex/.codex/skills/` and are installed into `~/.codex/skills/` via Stow.
+Skills live in `agents/.agents/skills/`. After `stow agents`, they land in `~/.agents/skills/`, and the Codex skill entries point to that home directory.
 
 Included skills:
 - `codex/.codex/skills/pre-review-gate/SKILL.md` — local “ready for review” gating workflow:
   - run lint/typecheck/tests (prefer CI’s exact commands)
-  - then run a high-recall Codex review pass
-  - optionally run CodeRabbit CLI (`coderabbit --prompt-only`)
+  - run Aikido security scan
+  - run a high-recall Codex review pass
+  - run CodeRabbit CLI (`coderabbit --prompt-only`) for a second opinion
 - `codex/.codex/skills/gh-address-bot-feedback/SKILL.md` — fetch and address CodeRabbit / Codex Connector feedback on an open GitHub PR using `gh`
 - `codex/.codex/skills/commit-and-pr/SKILL.md` — split staged changes into Conventional Commits, push, and open a PR via `gh`
+- `codex/.codex/skills/update-docs/SKILL.md` — audit and reorganize documentation with progressive disclosure + link checks
+- `codex/.codex/skills/update-agent-instructions/SKILL.md` — consolidate AGENTS.md and instruction files into a consistent structure
 
 ### High-recall Codex reviews
 

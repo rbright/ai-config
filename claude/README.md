@@ -53,10 +53,7 @@ stow claude
 - **`/user-git-commit`** - Logical commit creation with conventional commits
 - **`/user-git-pr`** - GitHub PR creation with automated descriptions
 
-### 📊 Documentation Management
-- **`/user-docs-update`** - Keep documentation current with code changes
-- **`/user-docs-refactor`** - Restructure and improve documentation
-- **`/user-rules-update`** - Update coding patterns and rules
+Documentation and instruction refactors are handled via Codex skills in `codex/.codex/skills/`.
 
 ## 🤖 Specialized Sub-Agents
 
