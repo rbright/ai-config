@@ -7,8 +7,8 @@ PLAN.md
 SESSION.md
 
 # Claude Code
-**/.claude/settings.local.json
-**/.claude/tasks
+**/claude/settings.local.json
+**/claude/tasks
 
 # Codex
 **/.codex/skills/.system
