@@ -80,9 +80,9 @@ undo = false
 # MCP Servers
 ################################################################################
 
-[mcp_servers.chrome-devtools]
+[mcp_servers.aikido]
 command = "npx"
-args = ["chrome-devtools-mcp@latest"]
+args = ["-y", "@aikidosec/mcp"]
 
 [mcp_servers.linear]
 url = "https://mcp.linear.app/mcp"
@@ -92,10 +92,14 @@ command = "npx"
 args = ["-y", "mcp-remote@latest", "https://mcp.sentry.dev/mcp"]
 startup_timeout_sec = 30.0
 
-[mcp_servers.todoist]
-command = "npx"
-args = ["-y", "mcp-remote@latest", "https://ai.todoist.net/mcp"]
-startup_timeout_sec = 30
+# [mcp_servers.chrome-devtools]
+# command = "npx"
+# args = ["chrome-devtools-mcp@latest"]
+
+# [mcp_servers.todoist]
+# command = "npx"
+# args = ["-y", "mcp-remote@latest", "https://ai.todoist.net/mcp"]
+# startup_timeout_sec = 30.0
 
 ################################################################################
 # Privacy & Security
