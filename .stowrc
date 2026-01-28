@@ -1,4 +1,5 @@
 --target=$HOME
---no-folding
 --ignore=.DS_Store
 --ignore=config\\.toml$
+--ignore=^\\.codex/skills$
+--ignore=^\\.config/claude/skills$
