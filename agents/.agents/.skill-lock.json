@@ -8,7 +8,7 @@
       "skillPath": "skills/react-best-practices/SKILL.md",
       "skillFolderHash": "079b06a135401704ea94ab74c7c9d86c92ba259f",
       "installedAt": "2026-01-27T06:48:31.953Z",
-      "updatedAt": "2026-01-27T06:48:31.953Z"
+      "updatedAt": "2026-01-28T16:56:29.494Z"
     },
     "find-skills": {
       "source": "vercel-labs/skills",
@@ -17,7 +17,7 @@
       "skillPath": "skills/find-skills/SKILL.md",
       "skillFolderHash": "c2f31172b6f256272305a5e6e7228b258446899f",
       "installedAt": "2026-01-27T06:48:36.428Z",
-      "updatedAt": "2026-01-27T06:48:36.428Z"
+      "updatedAt": "2026-01-28T16:57:49.634Z"
     },
     "frontend-design": {
       "source": "anthropics/skills",
@@ -26,7 +26,7 @@
       "skillPath": "skills/frontend-design/SKILL.md",
       "skillFolderHash": "928950704df8a8b885c03de5da626331e6f29cf8",
       "installedAt": "2026-01-27T06:49:05.713Z",
-      "updatedAt": "2026-01-27T06:49:05.713Z"
+      "updatedAt": "2026-01-28T16:56:43.115Z"
     },
     "mermaid-diagrams": {
       "source": "softaworks/agent-toolkit",
@@ -35,10 +35,22 @@
       "skillPath": "skills/mermaid-diagrams/SKILL.md",
       "skillFolderHash": "996be1ec540a7ff8059f71315058db5f7a2a5b9e",
       "installedAt": "2026-01-27T06:51:15.402Z",
-      "updatedAt": "2026-01-27T06:51:15.402Z"
+      "updatedAt": "2026-01-28T16:56:53.047Z"
+    },
+    "agent-browser": {
+      "source": "vercel-labs/agent-browser",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/vercel-labs/agent-browser.git",
+      "skillPath": "skills/agent-browser/SKILL.md",
+      "skillFolderHash": "055f4a89276ed2c51b335c2e492ce863afb0cf8f",
+      "installedAt": "2026-01-28T16:56:06.591Z",
+      "updatedAt": "2026-01-28T16:56:06.591Z"
     }
   },
   "dismissed": {
     "findSkillsPrompt": true
-  }
+  },
+  "lastSelectedAgents": [
+    "codex"
+  ]
 }
